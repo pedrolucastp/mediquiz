@@ -1,0 +1,48 @@
+<!-- quiz/index.html -->
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Quiz Rápido</title>
+    <link rel="stylesheet" href="quiz.css">
+    <!-- Fonte do Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap">
+</head>
+<body>
+    <header>
+        <h1>Quiz Rápido</h1>
+        <!-- Seletores de Especialidade e Dificuldade no Cabeçalho -->
+        <div id="selectors">
+            <label for="specialtySelect">Especialidade:</label>
+            <select id="specialtySelect">
+                <option value="all">Todas</option>
+                <!-- As opções serão preenchidas dinamicamente -->
+            </select>
+
+            <label for="difficultySelect">Dificuldade:</label>
+            <select id="difficultySelect">
+                <option value="all">Todas</option>
+                <option value="1">1 (Fácil)</option>
+                <option value="2">2 (Média)</option>
+                <option value="3">3 (Difícil)</option>
+            </select>
+        </div>
+    </header>
+    <main>
+        <div id="quiz-container">
+            <div id="timer">Tempo Restante: <span id="time">15</span>s</div>
+            <div id="question"></div>
+            <ul id="options"></ul>
+            <button id="next-button" style="display: none;">Próxima Pergunta</button>
+        </div>
+        <a href="../index.html">← Voltar ao Início</a>
+    </main>
+    <footer>
+        <p>&copy; 2023 MedQuiz. Todos os direitos reservados.</p>
+    </footer>
+    <!-- Importação do arquivo vocabulary.js -->
+    <script type="module" src="../vocabulary.js"></script>
+    <script type="module" src="quiz.js"></script>
+</body>
+</html>

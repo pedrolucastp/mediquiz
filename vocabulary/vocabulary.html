@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Vocabulário Médico - MedQuiz</title>
+    <link rel="stylesheet" href="vocabulary.css">
+    <link rel="stylesheet" href="../style.css">
+    <!-- Fonte do Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap">
+</head>
+
+<body>
+    <header>
+        <h1>Vocabulário Médico</h1>
+
+        <div class="filter-options">
+            <label for="specialty-select">Especialidade:</label>
+            <select id="specialty-select">
+                <option value="all">Todas</option>
+                <!-- As opções serão preenchidas dinamicamente -->
+            </select>
+
+            <label for="difficulty-select">Dificuldade:</label>
+            <select id="difficulty-select">
+                <option value="all">Todas</option>
+                <option value="1">Fácil</option>
+                <option value="2">Média</option>
+                <option value="3">Difícil</option>
+            </select>
+
+            <!-- Botão para destacar duplicatas -->
+            <button id="highlight-duplicates-btn">Destacar Duplicatas</button>
+
+            <!-- Botão para remover duplicatas -->
+            <button id="remove-duplicates-btn">Remover Duplicatas</button>
+
+            <!-- Botão para exportar a lista -->
+            <button id="export-json-btn">Exportar JSON</button>
+        </div>
+    </header>
+    <main>
+        <nav>
+            <a href="../index.html">Início</a>
+        </nav>
+        <div class="counter">
+            <p>Total de termos: <span id="total-count">0</span></p>
+        </div>
+        <div id="vocabularyList" class="vocabulary-list">
+            <!-- A lista de termos será carregada aqui via JavaScript -->
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2023 MedQuiz. Todos os direitos reservados.</p>
+    </footer>
+
+    <!-- Importação do arquivo vocabularyViewer.js -->
+    <script type="module" src="vocabularyViewer.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,109 @@
+/* quiz.css */
+
+/* Estilos gerais */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #ecf0f1;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+header {
+    background-color: #2980b9;
+    color: white;
+    padding: 20px 0;
+    position: relative;
+}
+
+header h1 {
+    margin: 0;
+}
+
+#selectors {
+    margin-top: 10px;
+}
+
+#selectors label {
+    margin-right: 5px;
+    font-weight: bold;
+}
+
+#selectors select {
+    padding: 5px;
+    font-size: 16px;
+    margin-right: 15px;
+}
+
+main {
+    padding: 20px;
+}
+
+#quiz-container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+#timer {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+#question {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+#options {
+    list-style-type: none;
+    padding: 0;
+}
+
+#options li {
+    margin-bottom: 10px;
+}
+
+#options button {
+    width: 100%;
+    padding: 10px;
+    font-size: 18px;
+    cursor: pointer;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+#options button:hover {
+    background-color: #2980b9;
+}
+
+#next-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    margin-top: 20px;
+    background-color: #27ae60;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#next-button:hover {
+    background-color: #2ecc71;
+}
+
+footer {
+    background-color: #bdc3c7;
+    padding: 10px 0;
+}
+
+a {
+    display: block;
+    margin-top: 20px;
+    color: #2980b9;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}

@@ -1,0 +1,135 @@
+/* Variáveis CSS */
+:root {
+    --primary-color: #2980b9;
+    --secondary-color: #2c3e50;
+    --accent-color: #e74c3c;
+    --background-color: #f0f8ff;
+    --font-family: 'Poppins', sans-serif;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--background-color);
+    margin: 0;
+    padding: 0;
+}
+
+header, footer {
+    background-color: var(--secondary-color);
+    color: #fff;
+    padding: 15px 0;
+    text-align: center;
+}
+
+h1, h2 {
+    margin: 0;
+    font-weight: 600;
+}
+
+main {
+    text-align: center;
+    padding: 20px;
+}
+
+#crossword-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+#crossword {
+    display: grid;
+    margin: 20px;
+    width: max-content;
+}
+
+.cell {
+    border: 1px solid #000;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    vertical-align: middle;
+    position: relative;
+}
+
+.cell input {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    background-color: transparent;
+}
+
+.cell .clue-number {
+    position: absolute;
+    top: 0;
+    left: 2px;
+    font-size: 10px;
+    font-weight: bold;
+}
+
+#clues {
+    max-width: 300px;
+    margin: 20px;
+    text-align: left;
+}
+
+#clues h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+#clue-list {
+    list-style: none;
+    padding: 0;
+}
+
+#clue-list li {
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+#check-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: var(--primary-color);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#check-button:hover {
+    background-color: var(--accent-color);
+}
+
+a {
+    display: inline-block;
+    margin-top: 20px;
+    text-decoration: none;
+    color: var(--primary-color);
+    font-size: 16px;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+footer p {
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    #crossword-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #clues {
+        text-align: center;
+    }
+}

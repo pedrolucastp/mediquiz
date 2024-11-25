@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Palavras Cruzadas</title>
+    <link rel="stylesheet" href="crossword.css">
+    <!-- Fonte do Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap">
+</head>
+<body>
+    <header>
+        <h1 id="level-title">Palavras Cruzadas</h1>
+        <div id="controls">
+            <label for="specialty-select">Especialidade:</label>
+            <select id="specialty-select">
+                <!-- As opções serão preenchidas dinamicamente -->
+            </select>
+
+            <label for="difficulty-select">Dificuldade:</label>
+            <select id="difficulty-select">
+                <option value="all">Todas as Dificuldades</option>
+                <option value="1">Fácil</option>
+                <option value="2">Médio</option>
+                <option value="3">Difícil</option>
+            </select>
+        </div>
+    </header>
+    <main>
+        <div id="crossword-container">
+            <div id="crossword"></div>
+            <div id="clues">
+                <h2>Dicas</h2>
+                <ul id="clue-list"></ul>
+            </div>
+        </div>
+        <button id="check-button">Verificar</button>
+        <a href="../index.html">← Voltar ao Início</a>
+    </main>
+    <footer>
+        <p>&copy; 2023 MedQuiz. Todos os direitos reservados.</p>
+    </footer>
+    <script type="module" src="crossword.js"></script>
+</body>
+</html>
