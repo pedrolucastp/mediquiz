@@ -12,6 +12,9 @@ body {
     background-color: var(--background-color);
     margin: 0;
     padding: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
 }
 
 header, footer {
@@ -29,6 +32,10 @@ h1 {
 main {
     text-align: center;
     padding: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
 }
 
 p {
@@ -68,6 +75,8 @@ p {
     margin-top: 10px;
     color: var(--primary-color);
     font-weight: 600;
+    font-size: 5rem;
+
 }
 
 .game-card p {
@@ -82,30 +91,35 @@ footer p {
     margin: 0;
 }
 
-@media (max-width: 768px) {
-    .game-card {
-        width: 200px;
+@media (min-width: 768px) {
+    h1 {
+        font-size: 6rem;    
+    }
+    
+    p {
+        font-size: 3rem;
     }
 
     .svg-icon svg {
-        width: 80%;
+        width: 150px;
+        height: 150px;
     }
-}
 
-@media (max-width: 480px) {
     .game-links {
         flex-direction: column;
         align-items: center;
     }
 
-    .game-card {
-        width: 90%;
+    .game-links a {
+        text-decoration: none;
+        color: inherit;
+        display: flex;
+        width: 100%;
     }
+
+    .game-card {
+        width: 100%;
+        padding: 50px;
+    }
+
 }
-
-/* style.css */
-
-/* ... (estilos existentes) */
-
-/* Estilos para o Vocabulário */
-
