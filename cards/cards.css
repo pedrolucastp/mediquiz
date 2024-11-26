@@ -86,9 +86,7 @@
     .card-back {
         font-size: 12px;
     }
-}
 
-@media (max-width: 480px) {
     #game-board {
         grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
         grid-gap: 8px;
