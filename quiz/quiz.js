@@ -1,6 +1,7 @@
 // quiz.js
 
-import { allWords, specialties } from '../vocabulary/vocabulary.js';
+import { allWords } from '../vocabulary/vocabulary.js';
+import { initializeSelectors } from '../components/selectorsComponent.js';
 
 let currentQuestionIndex = 0;
 let timer;
@@ -8,32 +9,22 @@ let timeLeft = 15;
 let selectedQuestions = [];
 
 // Referências aos elementos HTML
-const specialtySelect = document.getElementById('specialtySelect');
-const difficultySelect = document.getElementById('difficultySelect');
 const quizContainer = document.getElementById('quiz-container');
 const questionEl = document.getElementById('question');
 const optionsEl = document.getElementById('options');
 const timeEl = document.getElementById('time');
 const nextButton = document.getElementById('next-button');
 
-// Preencher o seletor de especialidades
-function populateSpecialtySelect() {
-    specialties.forEach((specialty, index) => {
-        const option = document.createElement('option');
-        option.value = index;
-        option.textContent = specialty;
-        specialtySelect.appendChild(option);
-    });
-}
-
-// Evento para atualizar o quiz quando os seletores mudam
-specialtySelect.addEventListener('change', resetQuiz);
-difficultySelect.addEventListener('change', resetQuiz);
+// Inicializar os seletores de especialidade e dificuldade
+initializeSelectors(resetQuiz, resetQuiz);
 
 // Iniciar o quiz
 function startQuiz() {
     currentQuestionIndex = 0;
     selectedQuestions = [];
+
+    const specialtySelect = document.getElementById('specialty-select');
+    const difficultySelect = document.getElementById('difficulty-select');
 
     const selectedSpecialty = specialtySelect.value;
     const selectedDifficulty = difficultySelect.value;
@@ -177,6 +168,5 @@ function resetQuiz() {
     startQuiz();
 }
 
-// Inicializar
-populateSpecialtySelect();
+// Inicializar o quiz
 startQuiz();

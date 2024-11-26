@@ -1,20 +1,13 @@
-import { allWords, specialties } from "../vocabulary/vocabulary.js";
+// memoryGame.js
+import { allWords } from '../vocabulary/vocabulary.js';
+import { initializeSelectors } from '../components/selectorsComponent.js';
 
 // Selecionar os elementos DOM
-const specialtySelect = document.getElementById('specialty-select');
-const difficultySelect = document.getElementById('difficulty-select');
 const gameBoard = document.getElementById('game-board');
 const scoreDisplay = document.getElementById('score');
 
-// Preencher as opções de especialidades
-function populateSpecialties() {
-    specialties.forEach((specialty, index) => {
-        const option = document.createElement('option');
-        option.value = index;
-        option.textContent = specialty;
-        specialtySelect.appendChild(option);
-    });
-}
+// Inicializar os seletores de especialidade e dificuldade
+initializeSelectors(handleSpecialtyChange, handleDifficultyChange);
 
 // Variáveis do jogo
 let firstCard = null;
@@ -32,6 +25,9 @@ function createBoard() {
     scoreDisplay.textContent = `Pontuação: ${score}`;
 
     // Obter palavras com base na especialidade e dificuldade selecionadas
+    const specialtySelect = document.getElementById('specialty-select');
+    const difficultySelect = document.getElementById('difficulty-select');
+    
     let selectedSpecialty = specialtySelect.value;
     let selectedDifficulty = difficultySelect.value;
 
@@ -147,12 +143,16 @@ function updateScore() {
 }
 
 // Atualizar o jogo ao mudar as opções
-specialtySelect.addEventListener('change', createBoard);
-difficultySelect.addEventListener('change', createBoard);
+function handleSpecialtyChange() {
+    createBoard();
+}
+
+function handleDifficultyChange() {
+    createBoard();
+}
 
 // Evento de clique nas cartas
 gameBoard.addEventListener('click', flipCard);
 
 // Iniciar o jogo
-populateSpecialties();
 createBoard();

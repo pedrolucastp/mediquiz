@@ -1,7 +1,6 @@
-// crossword.js
-
 // Importar o vocabulário e as especialidades
-import { allWords, specialties } from '../vocabulary/vocabulary.js';
+import { allWords } from '../vocabulary/vocabulary.js';
+import { initializeSelectors } from '../components/selectorsComponent.js';
 
 // Variáveis globais
 let currentLevel = 1;
@@ -19,42 +18,12 @@ let selectedDifficulty = 'all';
 
 // Função para inicializar a interface
 function initializeInterface() {
-    const specialtySelect = document.getElementById('specialty-select');
-    const difficultySelect = document.getElementById('difficulty-select');
-
-    // Limpar opções existentes
-    specialtySelect.innerHTML = '';
-
-    // Adicionar a opção 'Todas as Especialidades'
-    const allOption = document.createElement('option');
-    allOption.value = 'all';
-    allOption.textContent = 'Todas as Especialidades';
-    specialtySelect.appendChild(allOption);
-
-    // Preencher o seletor de especialidades usando o array specialties
-    specialties.forEach((spec, index) => {
-        const option = document.createElement('option');
-        option.value = index; // Usar o índice como valor
-        option.textContent = spec;
-        specialtySelect.appendChild(option);
-    });
-
-    // Adicionar eventos aos seletores para atualizar o jogo quando o usuário alterar as opções
-    specialtySelect.addEventListener('change', () => {
-        selectedSpecialty = specialtySelect.value;
-        resetGame();
-        startLevel();
-    });
-
-    difficultySelect.addEventListener('change', () => {
-        selectedDifficulty = difficultySelect.value;
-        resetGame();
-        startLevel();
-    });
+    // Inicializar o seletor de especialidade e dificuldade
+    initializeSelectors(handleSpecialtyChange, handleDifficultyChange);
 
     // Inicializar as seleções com os valores padrão
-    selectedSpecialty = specialtySelect.value;
-    selectedDifficulty = difficultySelect.value;
+    selectedSpecialty = document.getElementById('specialty-select').value;
+    selectedDifficulty = document.getElementById('difficulty-select').value;
 
     // Exibir o jogo
     document.getElementById('crossword-container').style.display = 'flex';
@@ -65,6 +34,20 @@ function initializeInterface() {
 
     // Adicionar evento ao botão "Verificar"
     document.getElementById('check-button').addEventListener('click', checkAnswers);
+}
+
+// Função para lidar com mudança de especialidade
+function handleSpecialtyChange(event) {
+    selectedSpecialty = event.target.value;
+    resetGame();
+    startLevel();
+}
+
+// Função para lidar com mudança de dificuldade
+function handleDifficultyChange(event) {
+    selectedDifficulty = event.target.value;
+    resetGame();
+    startLevel();
 }
 
 // Função para resetar o jogo
@@ -82,6 +65,7 @@ function resetGame() {
 // Inicializar a interface
 initializeInterface();
 
+// Funções restantes para o jogo
 function initializeGrid() {
     grid = [];
     for (let i = 0; i < GRID_ROWS; i++) {

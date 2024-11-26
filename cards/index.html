@@ -1,40 +1,31 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <title>Jogo de Memória</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="cards.css">
+    <link rel="stylesheet" href="../style.css">
     <!-- Fonte do Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
+
 <body>
     <header>
         <h1>Jogo de Memória</h1>
-        <div class="controls">
-            <label for="specialty-select">Especialidade:</label>
-            <select id="specialty-select">
-                <option value="all">Todas</option>
-                <!-- As opções serão preenchidas dinamicamente -->
-            </select>
-
-            <label for="difficulty-select">Dificuldade:</label>
-            <select id="difficulty-select">
-                <option value="all">Todas</option>
-                <option value="1">Fácil</option>
-                <option value="2">Média</option>
-                <option value="3">Difícil</option>
-            </select>
+        <a href="../index.html">← Voltar ao Início</a>
+        <div class="controls" id="selectors">
         </div>
     </header>
     <main>
-        <div id="game-board"></div>
         <p id="score">Pontuação: 0</p>
-        <a href="../index.html">← Voltar ao Início</a>
+        <div id="game-board"></div>
     </main>
     <footer>
         <p>&copy; 2023 MedQuiz. Todos os direitos reservados.</p>
     </footer>
-    <script src="../vocabulary.js" type="module"></script>
+    <script src="../vocabulary/vocabulary.js" type="module"></script>
     <script src="script.js" type="module"></script>
 </body>
+
 </html>
