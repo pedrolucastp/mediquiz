@@ -143,8 +143,9 @@ main p {
 .game-links a {
     text-decoration: none;
     color: inherit;
-    display: flex
-    ;
+    display: flex;
+    margin: 0;
+
 }
 
 .game-card {
@@ -198,6 +199,9 @@ a:hover {
 }
 
 @media only screen and (max-width: 768px) {
+    header {
+flex-direction: column;    }
+
     header h1 {
         font-size: 40px;    
     }
@@ -216,8 +220,7 @@ a:hover {
     }
 
     .svg-icon svg {
-        width: 150px;
-        height: 150px;
+        height: 75x;
     }
 
     .game-links {
@@ -230,11 +233,11 @@ a:hover {
         color: inherit;
         display: flex;
         width: 100%;
+
     }
 
     .game-card {
         width: 100%;
-        padding: 50px;
     }
 
     .controls {

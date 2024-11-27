@@ -78,9 +78,17 @@
     #crossword-container {
         flex-direction: column;
         align-items: center;
+        flex-wrap: nowrap;
     }
 
     #clues {
         text-align: center;
+    }
+
+    #crossword {
+        margin: 10px;
+        width: 100%;
+        padding: 20px;
+        overflow: auto;
     }
 }

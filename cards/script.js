@@ -59,7 +59,7 @@ function createBoard() {
     // Embaralhar as cartas
     gameCards.sort(() => 0.5 - Math.random());
 
-    gameCards.forEach(wordObj => {
+    gameCards.forEach((wordObj, i) => {
         const card = document.createElement('div');
         card.classList.add('card');
 
@@ -68,7 +68,7 @@ function createBoard() {
 
         const cardFront = document.createElement('div');
         cardFront.classList.add('card-front');
-        cardFront.textContent = '?';
+        cardFront.textContent = i;
 
         const cardBack = document.createElement('div');
         cardBack.classList.add('card-back');

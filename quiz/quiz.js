@@ -89,25 +89,31 @@ function showQuestion() {
 
 function selectOption(event) {
     clearInterval(timer);
-    const selectedOption = event.target.textContent;
     const correctAnswer = selectedQuestions[currentQuestionIndex].word;
 
-    if (selectedOption === correctAnswer) {
-        event.target.style.backgroundColor = '#2ecc71'; // Verde para correto
-    } else {
-        event.target.style.backgroundColor = '#e74c3c'; // Vermelho para incorreto
-        // Destacar a resposta correta
-        const optionsButtons = document.querySelectorAll('#options button');
-        optionsButtons.forEach(button => {
-            if (button.textContent === correctAnswer) {
-                button.style.backgroundColor = '#2ecc71';
-            }
-        });
+    let selectedOption = null;
+    if (event) {
+        selectedOption = event.target.textContent;
+
+        if (selectedOption === correctAnswer) {
+            event.target.style.backgroundColor = '#2ecc71'; // Verde para correto
+        } else {
+            event.target.style.backgroundColor = '#e74c3c'; // Vermelho para incorreto
+        }
     }
+
+    // Destacar a resposta correta caso a opção selecionada seja incorreta ou o tempo esgote
+    const optionsButtons = document.querySelectorAll('#options button');
+    optionsButtons.forEach(button => {
+        if (button.textContent === correctAnswer) {
+            button.style.backgroundColor = '#2ecc71';
+        }
+    });
 
     disableOptions();
     nextButton.style.display = 'block';
 }
+
 
 function disableOptions() {
     const optionsButtons = document.querySelectorAll('#options button');
@@ -129,6 +135,7 @@ function startTimer() {
         timeEl.textContent = timeLeft;
         if (timeLeft <= 0) {
             clearInterval(timer);
+            selectOption(null)
             alert('Tempo esgotado!');
             disableOptions();
             nextButton.style.display = 'block';
