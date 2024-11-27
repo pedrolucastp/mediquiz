@@ -31,13 +31,18 @@ header {
     /* color: #fff; */
     padding: 10px 0;
     text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 header h1 {
-    font-size: 4rem;
+    font-size: 26px;
     margin: 0;
     font-weight: 600;
     color: var(--accent-color);
+    display: block;
+    /* flex: 1; */
 }
 
 footer {
@@ -51,6 +56,7 @@ footer {
 h1 {
     margin: 0;
     font-weight: 600;
+    font-size: 28px;
 }
 
 main {
@@ -68,15 +74,16 @@ main {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
     gap: 20px;
-    padding: 20px;
+    padding: 0 10px;
+    /* width: 50%; */
     /* background-color: var(--select-background); */
 }
 
 .controls-option {
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     justify-content: center;
     align-items: center;
     /* border: 1px solid var(--accent-color); */
@@ -89,7 +96,7 @@ main {
 label {
     font-weight: 600;
     color: var(--select-background);
-    min-width: 100%;
+    /* min-width: 100%; */
     flex-direction: column;
     display: flex;
 }
@@ -107,13 +114,21 @@ select {
 
 }
 
+#difficulty-select {
+    width: 100px;
+}
+
+#specialty-select {
+    width: 200px;
+}
+
 select:focus {
     /* border: var(--select-focus-border); */
     outline: none;
 }
 
 main p {
-    font-size: 3rem;
+    font-size: 1.5rem;
     color: var(--secondary-color);
 }
 
@@ -121,13 +136,15 @@ main p {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    margin: 30px 0;
+    /* margin: 30px 0; */
     /* overflow: ; */
 }
 
 .game-links a {
     text-decoration: none;
     color: inherit;
+    display: flex
+    ;
 }
 
 .game-card {
@@ -155,6 +172,7 @@ main p {
 
 .game-card p {
     color: #7f8c8d;
+    font-size: 22px;
 }
 
 .svg-icon {
@@ -167,28 +185,34 @@ footer p {
 
 a {
     display: inline-block;
-    margin-top: 20px;
+    /* margin-top: 20px; */
     text-decoration: none;
     color: var(--primary-color);
-    font-size: 2rem;
+    font-size: 1rem;
+    margin: 0 20px;
 
 }
 
 a:hover {
-    text-decoration: underline;
+    text-decoration: none;
 }
 
-@media (max-width: 768px) {
+@media only screen and (max-width: 768px) {
     header h1 {
-        font-size: 5rem;    
+        font-size: 40px;    
     }
 
     h1 {
-        font-size: larger;
+        font-size: 20px;
     }
     
+    a {
+        margin-top: 10px;
+        /* font-size: 1rem; */
+    
+    }
     .game-card p {
-        font-size: 3rem;
+        font-size: 20px;
     }
 
     .svg-icon svg {
@@ -217,16 +241,33 @@ a:hover {
         /* flex-direction: column; */
         align-items: center;
         gap: 10px;
+        margin-bottom: 10px;
+        gap: 10px;
+        padding: 10px;
+        /* background-color: var(--select-background); */
+    }
+    
+    .controls-option {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        /* border: 1px solid var(--accent-color); */
+        width: 100%;
+        /* padding: 20px; */
+        border-radius: 8px;
+        gap: 10px;
     }
 
     label {
-        font-size:3rem;
+        font-size:1rem;
     }
 
     select {
-        width: 80%;
+        width: 100%;
         padding: var(--mobile-padding);
-        font-size: 3rem;
+        font-size: 1rem;
         text-align: center;
+        padding: 10px;
     }
 }

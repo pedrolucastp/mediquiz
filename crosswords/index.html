@@ -2,6 +2,7 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Palavras Cruzadas</title>
     <link rel="stylesheet" href="crossword.css">
     <link rel="stylesheet" href="../style.css">
@@ -11,23 +12,23 @@
 <body>
     <header>
         <h1>Palavras Cruzadas</h1>
-        <a href="../index.html">← Voltar ao Início</a>
+        <a href="../index.html">← Início</a>
         <div class="controls" id="selectors">
-        <h2 id="level-title">Palavras Cruzadas</h1>
         </div>
     </header>
     <main>
         <div id="crossword-container">
-            <div id="crossword"></div>
             <div id="clues">
-                <h2>Dicas</h2>
-                <ul id="clue-list"></ul>
-            </div>
+                <h2 id="level-title"></h1>
+                    <!-- <h2>Dicas</h2> -->
+                    <ul id="clue-list"></ul>
+                    <button id="check-button">Verificar</button>
+                </div>
+                <div id="crossword"></div>
         </div>
-        <button id="check-button">Verificar</button>
     </main>
     <footer>
-        <p>&copy; 2023 MedQuiz. Todos os direitos reservados.</p>
+        <p>&copy; 2023 MEDiQUiZ. Todos os direitos reservados.</p>
     </footer>
     <script type="module" src="crossword.js"></script>
 </body>

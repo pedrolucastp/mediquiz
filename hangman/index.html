@@ -2,7 +2,8 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Forca - MediQuiz</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forca - MEDiQUiZ</title>
     <link rel="stylesheet" href="hangman.css">
     <link rel="stylesheet" href="../style.css">
     <!-- Fonte do Google Fonts -->
@@ -11,11 +12,12 @@
 <body>
     <header>
         <h1>Jogo da Forca</h1>
-        <a href="../index.html">← Voltar ao Início</a>
+        <a href="../index.html">← Início</a>
         <div class="controls" id="selectors">
     </header>
     <main>
         <div class="game-container" id="game-container" style="display: none;">
+          
             <div class="hangman-figure">
                 <!-- SVG do boneco da forca -->
                 <svg height="250" width="200" id="hangman-svg">
@@ -39,11 +41,15 @@
                 <!-- Palavra a ser adivinhada será exibida aqui -->
             </div>
 
-            <div class="info-container">
-                <p>Erros: <span id="wrong-guesses">0</span>/<span id="max-errors">6</span></p>
-                <p>Erros Feitos: <span id="wrong-letters">Nenhum</span></p>
+            <div class="clue-container" id="clue-container">
+                <!-- Dica a ser adivinhada será exibida aqui -->
             </div>
 
+            <div class="info-container">
+                <p><span id="wrong-letters"></span></p>
+                <p><span id="wrong-guesses">0</span>/<span id="max-errors">6</span></p>
+            </div>
+            
             <div class="guess-container">
                 <input type="text" id="guess-input" maxlength="1" placeholder="Digite uma letra" autofocus>
                 <button id="guess-btn">Chutar</button>
@@ -57,7 +63,7 @@
         </div>
     </main>
     <footer>
-        <p>&copy; 2023 MediQuiz. Todos os direitos reservados.</p>
+        <p>&copy; 2023 MEDiQUiZ. Todos os direitos reservados.</p>
     </footer>
 
     <script type="module" src="hangman.js"></script>

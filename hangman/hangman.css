@@ -1,5 +1,6 @@
 .game-container {
     display: flex;
+    flex-direction: column;
 }
 
 .hangman-figure {
@@ -31,6 +32,11 @@
     color: var(--secondary-color);
 }
 
+.info-container p {
+    font-size: 1rem;
+    margin: 0;
+}
+
 .guess-container {
     display: flex;
     justify-content: center;
@@ -42,7 +48,6 @@
     padding: 0.5rem;
     font-size: 1rem;
     text-transform: uppercase;
-    width: 3rem;
     text-align: center;
 }
 
@@ -81,6 +86,10 @@
 
 #restart-btn:hover {
     background-color: #c0392b;
+}
+
+#wrong-letters {
+    color: var(--accent-color);
 }
 
 /* Media Queries */

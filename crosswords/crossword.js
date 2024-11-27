@@ -462,7 +462,7 @@ function createCrossword() {
     // Atualizar o título
     document.getElementById(
         'level-title'
-    ).textContent = `Palavras Cruzadas - Nível ${currentLevel}`;
+    ).textContent = `Nível ${currentLevel}`;
 
     // Adicionar eventos aos inputs
     const inputs = crossword.querySelectorAll('input');

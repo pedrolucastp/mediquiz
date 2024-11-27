@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const gameContainer = document.getElementById('game-container');
     const hangmanSvg = document.getElementById('hangman-svg');
     const wordContainer = document.getElementById('word-container');
+    const clueContainer = document.getElementById('clue-container');
     const wrongGuessesSpan = document.getElementById('wrong-guesses');
     const maxErrorsSpan = document.getElementById('max-errors');
     const wrongLettersSpan = document.getElementById('wrong-letters');
@@ -19,6 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Variáveis do jogo
     let selectedWord = '';
+    let selectedClue = '';
     let displayedWord = [];
     let wrongGuesses = 0;
     const maxErrors = 6;
@@ -33,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
         wrongGuesses = 0;
         wrongLetters = [];
         wrongGuessesSpan.textContent = wrongGuesses;
-        wrongLettersSpan.textContent = 'Nenhum';
+        wrongLettersSpan.textContent = '';
         messageContainer.textContent = '';
         restartBtn.style.display = 'none';
         gameContainer.style.display = 'flex';
@@ -64,9 +66,11 @@ document.addEventListener('DOMContentLoaded', () => {
         // Selecionar aleatoriamente uma palavra
         const randomIndex = Math.floor(Math.random() * filteredWords.length);
         selectedWord = filteredWords[randomIndex].word;
+        selectedClue = filteredWords[randomIndex].clue;
         displayedWord = Array(selectedWord.length).fill('_');
 
         // Atualizar o display da palavra
+        renderClue(); 
         renderWord();
 
         // Resetar a figura da forca
@@ -86,6 +90,17 @@ document.addEventListener('DOMContentLoaded', () => {
             letterSpan.classList.add('letter');
             wordContainer.appendChild(letterSpan);
         });
+    }
+
+      // Função para renderizar a dica
+      function renderClue() {
+        clueContainer.innerHTML = selectedClue;
+        // displayedWord.forEach(letter => {
+        //     const letterSpan = document.createElement('span');
+        //     letterSpan.textContent = letter;
+        //     letterSpan.classList.add('letter');
+        //     wordContainer.appendChild(letterSpan);
+        // });
     }
 
     // Função para atualizar a figura da forca
