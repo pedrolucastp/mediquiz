@@ -76,7 +76,8 @@ function initializeGrid() {
 
 function getWordsForLevel(level) {
     // Calcular o número de palavras para o nível atual
-    const wordsPerLevel = 2 + Math.floor((level - 1) / 3);
+    // const wordsPerLevel = 3 + Math.floor((level - 1) / 3);
+    const wordsPerLevel = 4;
 
     // Filtrar palavras com base na especialidade e dificuldade selecionadas
     let filteredWords = allWords.filter(wordObj => {

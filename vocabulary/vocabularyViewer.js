@@ -1,10 +1,9 @@
 // vocabularyViewer.js
 
-import { allWords, specialties } from './vocabulary.js';
+import { allWords, specialties } from './vocabulary.js'; 
+import { initializeSelectors } from '../components/selectorsComponent.js';
 
 const vocabularyList = document.getElementById('vocabularyList');
-const specialtySelect = document.getElementById('specialty-select');
-const difficultySelect = document.getElementById('difficulty-select');
 const highlightDuplicatesBtn = document.getElementById('highlight-duplicates-btn');
 const removeDuplicatesBtn = document.getElementById('remove-duplicates-btn');
 const exportJsonBtn = document.getElementById('export-json-btn');
@@ -12,6 +11,9 @@ const totalCountElement = document.getElementById('total-count');
 
 // Variável para armazenar o estado de destaque de duplicatas
 let highlightDuplicates = false;
+
+// Inicializar os seletores de especialidade e dificuldade
+initializeSelectors(displayVocabulary, displayVocabulary);
 
 // Função para remover acentos de uma string
 function removeAccents(str) {
@@ -24,16 +26,6 @@ function countAccents(str) {
     return accents ? accents.length : 0;
 }
 
-// Função para preencher as opções de especialidades
-function populateSpecialties() {
-    specialties.forEach((specialty, index) => {
-        const option = document.createElement('option');
-        option.value = index;
-        option.textContent = specialty;
-        specialtySelect.appendChild(option);
-    });
-}
-
 // Função para exibir o vocabulário
 function displayVocabulary() {
     vocabularyList.innerHTML = ''; // Limpa a lista
@@ -41,6 +33,7 @@ function displayVocabulary() {
     let filteredWords = [...allWords];
 
     // Filtrar por especialidade
+    const specialtySelect = document.getElementById('specialty-select');
     const selectedSpecialty = specialtySelect.value;
     if (selectedSpecialty !== 'all') {
         filteredWords = filteredWords.filter(wordObj =>
@@ -49,6 +42,7 @@ function displayVocabulary() {
     }
 
     // Filtrar por dificuldade
+    const difficultySelect = document.getElementById('difficulty-select');
     const selectedDifficulty = difficultySelect.value;
     if (selectedDifficulty !== 'all') {
         filteredWords = filteredWords.filter(wordObj =>
@@ -69,7 +63,7 @@ function displayVocabulary() {
     });
 
     // Renderizar os termos
-    filteredWords.forEach((item, index) => {
+    filteredWords.forEach((item) => {
         const termElement = document.createElement('div');
         termElement.classList.add('term-item');
 
@@ -87,7 +81,7 @@ function displayVocabulary() {
         const editIcon = document.createElement('span');
         editIcon.classList.add('icon', 'edit-icon');
         editIcon.innerHTML = `
-            <svg width="20" height="20" viewBox="0 0 24 24">
+            <svg width="40" height="40" viewBox="0 0 24 24">
                 <path fill="#2980b9" d="M3 17.25V21h3.75l11.06-11.06-3.75-3.75L3 17.25zM21.41
                 6.34c.38-.38.38-1.02 0-1.41l-2.34-2.34a1.003
                 1.003 0 00-1.42 0l-1.83 1.83 3.75 3.75 1.84-1.83z"/>
@@ -102,7 +96,7 @@ function displayVocabulary() {
         const deleteIcon = document.createElement('span');
         deleteIcon.classList.add('icon', 'delete-icon');
         deleteIcon.innerHTML = `
-            <svg width="20" height="20" viewBox="0 0 24 24">
+            <svg width="40" height="40" viewBox="0 0 24 24">
                 <path fill="#e74c3c" d="M16 9v10H8V9h8m-1.5-6h-5l-1
                 1H5v2h14V4h-3.5l-1-1z"/>
             </svg>
@@ -151,18 +145,15 @@ function displayVocabulary() {
         editContainer.classList.add('edit-container');
         editContainer.style.display = 'none';
 
-        // Campo editável para a palavra
         const wordInput = document.createElement('input');
         wordInput.type = 'text';
         wordInput.value = item.word;
         wordInput.classList.add('word-input');
 
-        // Campo editável para a descrição (clue)
         const clueInput = document.createElement('textarea');
         clueInput.value = item.clue;
         clueInput.classList.add('clue-input');
 
-        // Selecionar especialidades
         const specialtiesSelect = document.createElement('div');
         specialtiesSelect.classList.add('specialties-select');
         specialties.forEach((specialty, specIndex) => {
@@ -176,12 +167,11 @@ function displayVocabulary() {
             specialtiesSelect.appendChild(label);
         });
 
-        // Selecionar dificuldade
         const difficultySelect = document.createElement('select');
         const difficulties = [
             { value: 1, label: 'Fácil' },
             { value: 2, label: 'Média' },
-            { value: 3, label: 'Difícil' },
+            { value: 3, label: 'Difícil' }
         ];
         difficulties.forEach(diff => {
             const option = document.createElement('option');
@@ -193,7 +183,6 @@ function displayVocabulary() {
             difficultySelect.appendChild(option);
         });
 
-        // Botão para salvar alterações
         const saveButton = document.createElement('button');
         saveButton.textContent = 'Salvar';
         saveButton.addEventListener('click', () => {
@@ -205,23 +194,13 @@ function displayVocabulary() {
             );
             item.difficulty = parseInt(difficultySelect.value);
 
-            // Voltar ao modo de visualização
             toggleEditMode(termElement, item, false);
         });
 
-        // Botão para cancelar edição
         const cancelButton = document.createElement('button');
         cancelButton.textContent = 'Cancelar';
         cancelButton.addEventListener('click', () => {
-            // Reverter as alterações (opcional)
-            wordInput.value = item.word;
-            clueInput.value = item.clue;
-            specialtiesSelect.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
-                checkbox.checked = item.specialties.includes(parseInt(checkbox.value));
-            });
-            difficultySelect.value = item.difficulty;
-
-            // Voltar ao modo de visualização
+            // Reverter as alterações
             toggleEditMode(termElement, item, false);
         });
 
@@ -232,7 +211,6 @@ function displayVocabulary() {
         editContainer.appendChild(saveButton);
         editContainer.appendChild(cancelButton);
 
-        // Montar o elemento do termo
         termElement.appendChild(iconsContainer);
         termElement.appendChild(viewContainer);
         termElement.appendChild(editContainer);
@@ -263,70 +241,5 @@ function toggleEditMode(termElement, item, editMode = true) {
     }
 }
 
-// Evento para destacar duplicatas
-highlightDuplicatesBtn.addEventListener('click', () => {
-    highlightDuplicates = !highlightDuplicates;
-    highlightDuplicatesBtn.textContent = highlightDuplicates ? 'Ocultar Duplicatas' : 'Destacar Duplicatas';
-    displayVocabulary();
-});
-
-// Evento para remover duplicatas
-removeDuplicatesBtn.addEventListener('click', () => {
-    if (confirm('Deseja realmente remover todas as duplicatas?')) {
-        removeDuplicates();
-        displayVocabulary();
-        alert('Duplicatas removidas com sucesso!');
-    }
-});
-
-// Função para remover duplicatas priorizando itens acentuados
-function removeDuplicates() {
-    const wordMap = {};
-    // Percorrer de trás para frente para evitar problemas ao remover itens durante a iteração
-    for (let i = allWords.length - 1; i >= 0; i--) {
-        const item = allWords[i];
-        const wordKey = removeAccents(item.word.toLowerCase());
-        const accentCount = countAccents(item.word);
-
-        if (wordMap[wordKey]) {
-            const existingItem = wordMap[wordKey];
-            const existingAccentCount = countAccents(existingItem.word);
-
-            if (accentCount > existingAccentCount) {
-                // O item atual tem mais acentos, substitui o existente
-                const index = allWords.indexOf(existingItem);
-                if (index > -1) {
-                    allWords.splice(index, 1);
-                }
-                wordMap[wordKey] = item;
-            } else {
-                // Mantém o existente, remove o atual
-                allWords.splice(i, 1);
-            }
-        } else {
-            wordMap[wordKey] = item;
-        }
-    }
-}
-
-// Evento para exportar a lista em JSON
-exportJsonBtn.addEventListener('click', () => {
-    const dataStr = JSON.stringify(allWords, null, 2);
-    const blob = new Blob([dataStr], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
-
-    // Criar um link temporário para download
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'vocabulary.json';
-    a.click();
-    URL.revokeObjectURL(url);
-});
-
-// Eventos para mudança nos filtros
-specialtySelect.addEventListener('change', displayVocabulary);
-difficultySelect.addEventListener('change', displayVocabulary);
-
 // Inicialização
-populateSpecialties();
 displayVocabulary();

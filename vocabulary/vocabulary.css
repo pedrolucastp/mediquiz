@@ -5,6 +5,11 @@
     position: relative;
 }
 
+.edit-container select {
+    border: 1px solid var(--primary-color);
+    margin-bottom: 10px;
+}
+
 .term-item.duplicate {
     background-color: #ffe6e6;
 }
@@ -25,12 +30,18 @@
 
 .specialties-select {
     margin-bottom: 10px;
+    display: flex;
+    overflow-x: auto;
 }
 
 .specialties-select label {
-    display: inline-block;
+    display: flex;
     margin-right: 10px;
-    font-size: 14px;
+    font-size: 1rem;
+    color: var(--secondary-color);
+    flex-direction: row;
+    align-items: center;
+    gap: 2px;
 }
 
 .difficulty {
@@ -71,4 +82,3 @@ button {
     font-weight: bold;
     color: #2c3e50;
 }
-

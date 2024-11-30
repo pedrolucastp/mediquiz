@@ -3,6 +3,8 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Vocabulário Médico - MEDiQUiZ</title>
     <link rel="stylesheet" href="vocabulary.css">
     <link rel="stylesheet" href="../style.css">
@@ -13,30 +15,8 @@
 <body>
     <header>
         <h1>Vocabulário Médico</h1>
-
-        <div class="filter-options">
-            <label for="specialty-select">Especialidade:</label>
-            <select id="specialty-select">
-                <option value="all">Todas</option>
-                <!-- As opções serão preenchidas dinamicamente -->
-            </select>
-
-            <label for="difficulty-select">Dificuldade:</label>
-            <select id="difficulty-select">
-                <option value="all">Todas</option>
-                <option value="1">Fácil</option>
-                <option value="2">Média</option>
-                <option value="3">Difícil</option>
-            </select>
-
-            <!-- Botão para destacar duplicatas -->
-            <button id="highlight-duplicates-btn">Destacar Duplicatas</button>
-
-            <!-- Botão para remover duplicatas -->
-            <button id="remove-duplicates-btn">Remover Duplicatas</button>
-
-            <!-- Botão para exportar a lista -->
-            <button id="export-json-btn">Exportar JSON</button>
+        <div class="controls" id="selectors">
+            <!-- Contêiner dos seletores que será preenchido dinamicamente -->
         </div>
     </header>
     <main>
@@ -54,7 +34,8 @@
         <p>&copy; 2023 MEDiQUiZ. Todos os direitos reservados.</p>
     </footer>
 
-    <!-- Importação do arquivo vocabularyViewer.js -->
+    <!-- Importação dos scripts necessários -->
+    <script type="module" src="../components/selectorsComponent.js"></script>
     <script type="module" src="vocabularyViewer.js"></script>
 </body>
 
