@@ -1,5 +1,29 @@
 // vocabulary.js
 
+
+// Função para carregar as palavras do LocalStorage ou usar o padrão
+function loadWordsFromLocalStorage() {
+    const storedWords = localStorage.getItem('vocabularyWords');
+    if (storedWords) {
+        return JSON.parse(storedWords);
+    } else {
+        // Ao inicializar pela primeira vez, adicionar `isActive` como true para todos os itens
+        const initializedWords = defaultAllWords.map(word => ({
+            ...word,
+            isActive: true
+        }));
+        localStorage.setItem('vocabularyWords', JSON.stringify(initializedWords));
+        return initializedWords;
+    }
+}
+
+// Exportar o array `allWords` carregado do LocalStorage
+export const allWords = loadWordsFromLocalStorage();
+
+// Função para salvar as palavras no LocalStorage
+export function saveWordsToLocalStorage() {
+    localStorage.setItem('vocabularyWords', JSON.stringify(allWords));
+}
 // Array de especialidades, cada uma associada a um índice numérico (o índice do array)
 export const specialties = [
     'Anatomia',          // 0
@@ -35,7 +59,7 @@ export const specialties = [
 ];
 
 // Itens do vocabulário com especialidades referenciadas por seus índices numéricos
-export const allWords =
+export const defaultAllWords =
     [
         { word: 'AAS', clue: 'Sigla para ácido acetilsalicílico.', specialties: [26, 7], difficulty: 1 },
         { word: 'ABASIA', clue: 'Incapacidade de andar devido à falta de coordenação muscular.', specialties: [4, 17], difficulty: 2 },

@@ -4,7 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Vocabulário Médico - MEDiQUiZ</title>
     <link rel="stylesheet" href="vocabulary.css">
     <link rel="stylesheet" href="../style.css">
@@ -15,14 +14,32 @@
 <body>
     <header>
         <h1>Vocabulário Médico</h1>
+
+        <a href="../index.html">← Início</a>
         <div class="controls" id="selectors">
-            <!-- Contêiner dos seletores que será preenchido dinamicamente -->
-        </div>
+
     </header>
     <main>
-        <nav>
-            <a href="../index.html">Início</a>
-        </nav>
+        <div class="filter-options">
+
+            <!-- Botão para destacar duplicatas -->
+            <button id="highlight-duplicates-btn">Destacar Duplicatas</button>
+
+            <!-- Botão para remover duplicatas -->
+            <button id="remove-duplicates-btn">Remover Duplicatas</button>
+
+            <!-- Botão para exibir apenas itens ativos -->
+            <button id="only-active-btn">Itens Ativos</button>
+
+            <!-- Botão para ativar todos os itens -->
+            <button id="set-all-active-btn">Ativar todos</button>
+
+            <!-- Botão para desativar todos os itens -->
+            <button id="set-all-not-active-btn">Desativar todos</button>
+
+            <!-- Botão para exportar a lista -->
+            <!-- <button id="export-json-btn">Exportar JSON</button> -->
+        </div>
         <div class="counter">
             <p>Total de termos: <span id="total-count">0</span></p>
         </div>
@@ -34,8 +51,7 @@
         <p>&copy; 2023 MEDiQUiZ. Todos os direitos reservados.</p>
     </footer>
 
-    <!-- Importação dos scripts necessários -->
-    <script type="module" src="../components/selectorsComponent.js"></script>
+    <!-- Importação do arquivo vocabularyViewer.js -->
     <script type="module" src="vocabularyViewer.js"></script>
 </body>
 

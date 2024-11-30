@@ -1,16 +1,20 @@
 // vocabularyViewer.js
 
-import { allWords, specialties } from './vocabulary.js'; 
+import { allWords, specialties, saveWordsToLocalStorage } from './vocabulary.js'; 
 import { initializeSelectors } from '../components/selectorsComponent.js';
 
 const vocabularyList = document.getElementById('vocabularyList');
 const highlightDuplicatesBtn = document.getElementById('highlight-duplicates-btn');
 const removeDuplicatesBtn = document.getElementById('remove-duplicates-btn');
+const onlyActiveBtn = document.getElementById('only-active-btn');
+const setAllActiveBtn = document.getElementById('set-all-active-btn');
+const setAllNotActiveBtn = document.getElementById('set-all-not-active-btn');
 const exportJsonBtn = document.getElementById('export-json-btn');
 const totalCountElement = document.getElementById('total-count');
 
 // Variável para armazenar o estado de destaque de duplicatas
 let highlightDuplicates = false;
+let onlyActive = false
 
 // Inicializar os seletores de especialidade e dificuldade
 initializeSelectors(displayVocabulary, displayVocabulary);
@@ -20,17 +24,69 @@ function removeAccents(str) {
     return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 }
 
-// Função para contar o número de acentos em uma string
-function countAccents(str) {
-    const accents = str.match(/[\u0300-\u036f]/g);
-    return accents ? accents.length : 0;
-}
+// Event listener para destacar duplicatas
+highlightDuplicatesBtn.addEventListener('click', () => {
+    highlightDuplicates = !highlightDuplicates;
+    highlightDuplicatesBtn.textContent = highlightDuplicates ? 'Remover Destaque' : 'Destacar Duplicatas';
+    displayVocabulary();
+});
+
+// Event listener para remover duplicatas
+removeDuplicatesBtn.addEventListener('click', () => {
+    if (confirm('Deseja realmente remover todas as duplicatas, mantendo apenas uma instância de cada palavra?')) {
+        const uniqueWords = {};
+        allWords.forEach(item => {
+            const wordKey = removeAccents(item.word.toLowerCase());
+            if (!uniqueWords[wordKey]) {
+                uniqueWords[wordKey] = item;
+            }
+        });
+        const uniqueWordsArray = Object.values(uniqueWords);
+        // Atualizar allWords
+        allWords.length = 0; // Limpa o array existente
+        allWords.push(...uniqueWordsArray); // Adiciona as palavras únicas
+        saveWordsToLocalStorage();
+        displayVocabulary();
+        alert('Duplicatas removidas com sucesso!');
+    }
+});
+
+// Event listener para destacar duplicatas
+onlyActiveBtn.addEventListener('click', () => {
+    onlyActive = !onlyActive;
+    onlyActiveBtn.textContent = onlyActive ? 'Exibir tudo' : 'Apenas Ativos';
+    displayVocabulary();
+});
+
+// Event listener para ativar todos os itens
+setAllActiveBtn.addEventListener('click', () => {
+    if (confirm('Deseja realmente ativar todos os itens?')) {
+        allWords.forEach(item => {
+            item.isActive = true
+        });
+        saveWordsToLocalStorage();
+        displayVocabulary();
+        alert('Itens ativados com sucesso!');
+    }
+});
+
+// Event listener para ativar todos os itens
+setAllNotActiveBtn.addEventListener('click', () => {
+    if (confirm('Deseja realmente desativar todos os itens?')) {
+        allWords.forEach(item => {
+            item.isActive = false
+        });
+        saveWordsToLocalStorage();
+        displayVocabulary();
+        alert('Itens desativados com sucesso!');
+    }
+});
 
 // Função para exibir o vocabulário
 function displayVocabulary() {
     vocabularyList.innerHTML = ''; // Limpa a lista
 
-    let filteredWords = [...allWords];
+    let filteredWords = onlyActive ? allWords.filter(wordObj => wordObj.isActive) : allWords; // Considerar apenas palavras ativas
 
     // Filtrar por especialidade
     const specialtySelect = document.getElementById('specialty-select');
@@ -81,7 +137,7 @@ function displayVocabulary() {
         const editIcon = document.createElement('span');
         editIcon.classList.add('icon', 'edit-icon');
         editIcon.innerHTML = `
-            <svg width="40" height="40" viewBox="0 0 24 24">
+            <svg width="24" height="24" viewBox="0 0 24 24">
                 <path fill="#2980b9" d="M3 17.25V21h3.75l11.06-11.06-3.75-3.75L3 17.25zM21.41
                 6.34c.38-.38.38-1.02 0-1.41l-2.34-2.34a1.003
                 1.003 0 00-1.42 0l-1.83 1.83 3.75 3.75 1.84-1.83z"/>
@@ -96,7 +152,7 @@ function displayVocabulary() {
         const deleteIcon = document.createElement('span');
         deleteIcon.classList.add('icon', 'delete-icon');
         deleteIcon.innerHTML = `
-            <svg width="40" height="40" viewBox="0 0 24 24">
+            <svg width="24" height="24" viewBox="0 0 24 24">
                 <path fill="#e74c3c" d="M16 9v10H8V9h8m-1.5-6h-5l-1
                 1H5v2h14V4h-3.5l-1-1z"/>
             </svg>
@@ -107,13 +163,27 @@ function displayVocabulary() {
                 const index = allWords.indexOf(item);
                 if (index > -1) {
                     allWords.splice(index, 1);
+                    saveWordsToLocalStorage();
                     displayVocabulary();
                 }
             }
         });
 
+        // Toggle para isActive
+        const toggleActive = document.createElement('input');
+        toggleActive.type = 'checkbox';
+        toggleActive.checked = item.isActive;
+        toggleActive.classList.add('toggle-active');
+        toggleActive.title = 'Ativar/Desativar';
+        toggleActive.addEventListener('change', () => {
+            item.isActive = toggleActive.checked;
+            saveWordsToLocalStorage();
+            displayVocabulary();
+        });
+
         iconsContainer.appendChild(editIcon);
         iconsContainer.appendChild(deleteIcon);
+        iconsContainer.appendChild(toggleActive); // Adiciona o toggle ao contêiner
 
         // Elementos de visualização
         const viewContainer = document.createElement('div');
@@ -186,14 +256,21 @@ function displayVocabulary() {
         const saveButton = document.createElement('button');
         saveButton.textContent = 'Salvar';
         saveButton.addEventListener('click', () => {
+            // Validação básica
+            if (wordInput.value.trim() === '') {
+                alert('A palavra não pode estar vazia.');
+                return;
+            }
+
             // Atualizar os valores do item
-            item.word = wordInput.value;
-            item.clue = clueInput.value;
+            item.word = wordInput.value.trim();
+            item.clue = clueInput.value.trim();
             item.specialties = Array.from(specialtiesSelect.querySelectorAll('input[type="checkbox"]:checked')).map(
                 checkbox => parseInt(checkbox.value)
             );
             item.difficulty = parseInt(difficultySelect.value);
 
+            saveWordsToLocalStorage();
             toggleEditMode(termElement, item, false);
         });
 
@@ -211,9 +288,9 @@ function displayVocabulary() {
         editContainer.appendChild(saveButton);
         editContainer.appendChild(cancelButton);
 
-        termElement.appendChild(iconsContainer);
         termElement.appendChild(viewContainer);
         termElement.appendChild(editContainer);
+        termElement.appendChild(iconsContainer);
 
         vocabularyList.appendChild(termElement);
     });
@@ -223,13 +300,16 @@ function displayVocabulary() {
 function toggleEditMode(termElement, item, editMode = true) {
     const viewContainer = termElement.querySelector('.view-container');
     const editContainer = termElement.querySelector('.edit-container');
+    const iconsContainer = termElement.querySelector('.icons-container');
 
     if (editMode) {
         viewContainer.style.display = 'none';
         editContainer.style.display = 'block';
+        iconsContainer.style.display = 'none';
     } else {
         viewContainer.style.display = 'block';
         editContainer.style.display = 'none';
+        iconsContainer.style.display = 'flex'; // Altera para flex para melhor alinhamento
 
         // Atualizar a visualização com os novos valores
         viewContainer.querySelector('h2').textContent = item.word;
@@ -242,4 +322,6 @@ function toggleEditMode(termElement, item, editMode = true) {
 }
 
 // Inicialização
-displayVocabulary();
+document.addEventListener('DOMContentLoaded', () => {
+    displayVocabulary();
+});
