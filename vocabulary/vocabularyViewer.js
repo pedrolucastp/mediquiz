@@ -54,7 +54,7 @@ removeDuplicatesBtn.addEventListener('click', () => {
 // Event listener para destacar duplicatas
 onlyActiveBtn.addEventListener('click', () => {
     onlyActive = !onlyActive;
-    onlyActiveBtn.textContent = onlyActive ? 'Exibir tudo' : 'Apenas Ativos';
+    onlyActiveBtn.textContent = onlyActive ? 'Exibir todos os itens' : 'Exibir apenas itens ativos';
     displayVocabulary();
 });
 
@@ -152,7 +152,7 @@ function displayVocabulary() {
         const deleteIcon = document.createElement('span');
         deleteIcon.classList.add('icon', 'delete-icon');
         deleteIcon.innerHTML = `
-            <svg width="24" height="24" viewBox="0 0 24 24">
+            <svg width="32" height="28" viewBox="0 0 24 22">
                 <path fill="#e74c3c" d="M16 9v10H8V9h8m-1.5-6h-5l-1
                 1H5v2h14V4h-3.5l-1-1z"/>
             </svg>
@@ -198,12 +198,12 @@ function displayVocabulary() {
         const specialtiesElement = document.createElement('p');
         specialtiesElement.classList.add('specialties');
         const specialtyNames = item.specialties.map(index => specialties[index]);
-        specialtiesElement.textContent = `Especialidades: ${specialtyNames.join(', ')}`;
+        specialtiesElement.textContent = `${specialtyNames.join(', ')}`;
 
         const difficultyElement = document.createElement('p');
         difficultyElement.classList.add('difficulty');
         const difficultyLevels = { 1: 'Fácil', 2: 'Média', 3: 'Difícil' };
-        difficultyElement.textContent = `Dificuldade: ${difficultyLevels[item.difficulty] || 'Desconhecida'}`;
+        difficultyElement.textContent = `${difficultyLevels[item.difficulty] || 'Desconhecida'}`;
 
         viewContainer.appendChild(wordElement);
         viewContainer.appendChild(clueElement);
