@@ -50,9 +50,10 @@
     font-size: 1rem;
     color: var(--secondary-color);
     flex-direction: row;
-    align-items: center;
+    align-items: baseline;
     gap: 2px;
     width: 45%;
+    text-align: justify;
 }
 
 .specialties {
