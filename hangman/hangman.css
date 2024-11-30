@@ -97,7 +97,7 @@
 /* Tablets e dispositivos médios */
 @media (max-width: 768px) {
     .game-container{
-       flex-direction: column; 
+       justify-content: center;
     }
     .word-container .letter {
         width: 1.75rem;
@@ -121,6 +121,11 @@
         width: 1.5rem;
         height: 1.5rem;
         font-size: 1rem;
+    }
+    
+    .hangman-figure {
+        margin-bottom: 0;
+        margin: auto;
     }
 
     .hangman-figure svg {
