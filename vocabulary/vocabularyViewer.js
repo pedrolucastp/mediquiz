@@ -1,6 +1,6 @@
 // vocabularyViewer.js
 
-import { allWords, specialties, saveWordsToLocalStorage } from './vocabulary.js'; 
+import { allWords, specialties, saveWordsToLocalStorage } from './vocabulary.js';
 import { initializeSelectors } from '../components/selectorsComponent.js';
 
 const vocabularyList = document.getElementById('vocabularyList');
@@ -11,6 +11,12 @@ const setAllActiveBtn = document.getElementById('set-all-active-btn');
 const setAllNotActiveBtn = document.getElementById('set-all-not-active-btn');
 const exportJsonBtn = document.getElementById('export-json-btn');
 const totalCountElement = document.getElementById('total-count');
+const addWordBtn = document.getElementById('add-word-btn');
+const addWordModal = document.getElementById('add-word-modal');
+const closeAddWordModalBtn = document.getElementById('close-add-word-modal');
+const cancelAddWordBtn = document.getElementById('cancel-add-word');
+const addWordForm = document.getElementById('add-word-form');
+const newSpecialtiesContainer = document.getElementById('new-specialties');
 
 // Variável para armazenar o estado de destaque de duplicatas
 let highlightDuplicates = false;
@@ -81,6 +87,110 @@ setAllNotActiveBtn.addEventListener('click', () => {
         alert('Itens desativados com sucesso!');
     }
 });
+
+// Função para abrir o modal
+addWordBtn.addEventListener('click', () => {
+    addWordModal.style.display = 'flex';
+    vocabularyList.style.display = 'none';
+
+});
+
+// Função para fechar o modal
+function closeModal() {
+    addWordModal.style.display = 'none';
+    vocabularyList.style.display = 'flex';
+
+}
+
+// Fechar o modal ao clicar no botão de fechar ou cancelar
+closeAddWordModalBtn.addEventListener('click', closeModal);
+cancelAddWordBtn.addEventListener('click', closeModal);
+
+// Fechar o modal ao clicar fora do conteúdo do modal
+window.addEventListener('click', (event) => {
+    if (event.target === addWordModal) {
+        closeModal();
+    }
+});
+
+// Função para gerar as checkboxes de especialidades no modal
+function generateSpecialtiesOptions() {
+    newSpecialtiesContainer.innerHTML = ''; // Limpa as opções existentes
+    specialties.forEach((specialty, index) => {
+        const label = document.createElement('label');
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.value = index;
+        label.appendChild(checkbox);
+        label.appendChild(document.createTextNode(specialty));
+        newSpecialtiesContainer.appendChild(label);
+    });
+}
+
+// Event listener para submissão do formulário de adicionar palavra
+addWordForm.addEventListener('submit', (event) => {
+    event.preventDefault(); // Prevenir o comportamento padrão do formulário
+
+    // Obter os valores do formulário
+    const newWord = document.getElementById('new-word').value.trim();
+    const newClue = document.getElementById('new-clue').value.trim();
+    const newDifficulty = parseInt(document.getElementById('new-difficulty').value);
+    const selectedSpecialties = Array.from(newSpecialtiesContainer.querySelectorAll('input[type="checkbox"]:checked')).map(
+        checkbox => parseInt(checkbox.value)
+    );
+
+    // Validações
+    if (newWord === '') {
+        alert('A palavra não pode estar vazia.');
+        return;
+    }
+
+    if (newClue === '') {
+        alert('A dica não pode estar vazia.');
+        return;
+    }
+
+    if (isNaN(newDifficulty)) {
+        alert('Por favor, selecione um nível de dificuldade.');
+        return;
+    }
+
+    if (selectedSpecialties.length === 0) {
+        alert('Por favor, selecione pelo menos uma especialidade.');
+        return;
+    }
+
+    // Verificar se a palavra já existe (evitar duplicatas)
+    const wordExists = allWords.some(item => removeAccents(item.word.toLowerCase()) === removeAccents(newWord.toLowerCase()));
+    if (wordExists) {
+        if (!confirm('A palavra já existe. Deseja adicionar uma nova instância desta palavra?')) {
+            return;
+        }
+    }
+
+    // Criar o novo objeto de palavra
+    const newWordObj = {
+        word: newWord,
+        clue: newClue,
+        specialties: selectedSpecialties,
+        difficulty: newDifficulty,
+        isActive: true
+    };
+
+    // Adicionar ao array allWords
+    allWords.push(newWordObj);
+
+    // Salvar no localStorage
+    saveWordsToLocalStorage();
+
+    // Atualizar a exibição
+    displayVocabulary();
+
+    // Fechar o modal e limpar o formulário
+    closeModal();
+    addWordForm.reset();
+});
+
 
 // Função para exibir o vocabulário
 function displayVocabulary() {
@@ -324,4 +434,5 @@ function toggleEditMode(termElement, item, editMode = true) {
 // Inicialização
 document.addEventListener('DOMContentLoaded', () => {
     displayVocabulary();
+    generateSpecialtiesOptions();
 });

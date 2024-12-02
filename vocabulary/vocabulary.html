@@ -37,6 +37,9 @@
             <!-- Botão para desativar todos os itens -->
             <button id="set-all-not-active-btn">Desativar todos</button>
 
+            <!-- Novo botão para adicionar uma nova palavra -->
+            <button id="add-word-btn">Adicionar Palavra</button>
+
             <!-- Botão para exportar a lista -->
             <!-- <button id="export-json-btn">Exportar JSON</button> -->
         </div>
@@ -50,6 +53,37 @@
     <footer>
         <p>&copy; 2023 MEDiQUiZ. Todos os direitos reservados.</p>
     </footer>
+    <!-- Modal para adicionar uma nova palavra -->
+    <div id="add-word-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close-button" id="close-add-word-modal">&times;</span>
+            <h2>Adicionar Nova Palavra</h2>
+            <form id="add-word-form">
+                <label for="new-word">Palavra:</label>
+                <input type="text" id="new-word" name="new-word" required>
+
+                <label for="new-clue">Dica:</label>
+                <textarea id="new-clue" name="new-clue" required></textarea>
+
+                <label for="new-specialties">Especialidades:</label>
+                <div id="new-specialties" class="specialties-select">
+                    <!-- As especialidades serão geradas dinamicamente pelo JavaScript -->
+                </div>
+
+                <label for="new-difficulty">Dificuldade:</label>
+                <select id="new-difficulty" name="new-difficulty" required>
+                    <option value="">Selecione</option>
+                    <option value="1">Fácil</option>
+                    <option value="2">Média</option>
+                    <option value="3">Difícil</option>
+                </select>
+
+                <button type="submit">Adicionar</button>
+                <button type="button" id="cancel-add-word">Cancelar</button>
+            </form>
+        </div>
+    </div>
+
 
     <!-- Importação do arquivo vocabularyViewer.js -->
     <script type="module" src="vocabularyViewer.js"></script>

@@ -1,13 +1,13 @@
 /* Estilos para os elementos editáveis */
 .term-item {
-    /* border: 1px solid var(--secondary-color); */
+    border: 1px solid var(--secondary-color);
     border-radius: 5px;
-    /* padding: 15px; */
+    padding: 15px;
     /* position: relative; */
     display: flex;
     flex-direction: column;
-    width: 100%;
-    box-shadow: 0px 0px 20px -10px;
+    max-width: 100%;
+    /* box-shadow: 0px 0px 20px -10px; */
 
 }
 
@@ -26,6 +26,8 @@
     font-weight: bold;
     margin-bottom: 10px;
     border: none;
+    padding: 0;
+
 }
 
 .clue-input {
@@ -34,14 +36,16 @@
     font-size: 16px;
     margin-bottom: 10px;
     border: none;
-
+    padding: 0;
 }
 
 .specialties-select {
     margin-bottom: 10px;
     display: flex;
-    /* overflow-x: auto; */
     flex-wrap: wrap;
+    overflow-y: auto;
+    height: 200px;
+    margin: 10px;
 }
 
 .specialties-select label {
@@ -104,6 +108,7 @@
     font-size: 18px;
     font-weight: bold;
     color: #2c3e50;
+    margin: 5px;
 }
 
 .vocabulary-list {
@@ -130,5 +135,73 @@
     height: 1.2rem;
 }
 
+/* Estilo para o modal */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5);
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    /* z-index: 1000; */
+}
+
+/* Conteúdo do modal */
+.modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    width: 100%;
+    max-height: 100%;
+    position: static;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    overflow-y: auto;
+}
+
+/* Botão de fechar */
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Estilo para os campos do formulário */
+#add-word-form label {
+    display: flex;
+    margin-top: 10px;
+    color: var(--secondary-color);
+    align-items: flex-start;
+}
+
+#add-word-form input[type="text"],
+#add-word-form textarea,
+#add-word-form select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    box-sizing: border-box;
+}
+
+#add-word-form button {
+    margin-top: 15px;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+/* Estilo para as especialidades dentro do modal */
+.new-specialties label {
+    display: block;
+    margin-top: 5px;
+    color: var(--primary-color);
+
+}
 
 
