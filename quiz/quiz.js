@@ -5,7 +5,7 @@ import { initializeSelectors } from '../components/selectorsComponent.js';
 
 let currentQuestionIndex = 0;
 let timer;
-let timeLeft = 15;
+let timeLeft = 7;
 let selectedQuestions = [];
 
 // Referências aos elementos HTML
@@ -52,7 +52,7 @@ function startQuiz() {
     selectedQuestions = shuffleArray(filteredWords).slice(0, 10); // Seleciona até 10 questões
 
     quizContainer.style.display = 'block';
-    timeLeft = 15;
+    timeLeft = 7;
     showQuestion();
 }
 
@@ -124,7 +124,7 @@ function disableOptions() {
 
 function nextQuestion() {
     currentQuestionIndex++;
-    timeLeft = 15;
+    timeLeft = 7;
     showQuestion();
 }
 
