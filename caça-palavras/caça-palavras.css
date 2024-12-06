@@ -1,0 +1,93 @@
+/* caça-palavras.css */
+
+.word-list {
+    margin-bottom: 20px;
+}
+
+.word-list h2 {
+    margin-bottom: 10px;
+}
+
+.word-list ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.word-list li {
+    font-size: 1.1rem;
+    margin: 5px 0;
+    text-decoration: none;
+    color: #333;
+}
+
+.word-list li.found {
+    text-decoration: line-through;
+    color: green;
+}
+
+#game-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 30px);
+    grid-template-rows: repeat(24, 30px);
+    /* gap: 2px; */
+}
+
+#game-grid .cell {
+    width: 40px;
+    height: 40px;
+    background-color: #fff;
+    /* border: 1px solid #ccc; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    user-select: none;
+    position: relative;
+    transition: background-color 0.3s, color 0.3s, text-decoration 0.3s, border 0.3s;
+    
+}
+
+#game-grid .cell.selected {
+    background-color: #d1e7dd; /* Cor para células selecionadas */
+    /* border: 1px solid #0d6efd; Destaque para seleção */
+}
+
+#game-grid .cell.found {
+    background-color: #a3e635;
+    color: white;
+    cursor: default;
+    text-decoration: line-through; /* Opcional: Riscar a letra encontrada */
+}
+
+#status {
+    margin-top: 20px;
+    font-size: 1.2rem;
+    color: #333;
+}
+
+
+@media (max-width: 768px) {
+    #game-grid {
+        grid-template-columns: repeat(12, 25px);
+        grid-template-rows: repeat(24, 25px);
+        margin: auto;
+    }
+
+    #game-grid .cell {
+        width: 25px;
+        height: 25px;
+        font-size: 1.2rem;
+    }
+
+    .word-list h2 {
+        font-size: 1rem;
+    }
+
+    .word-list li {
+        font-size: 0.9rem;
+    }
+
+    #status {
+        font-size: 1rem;
+    }
+}
