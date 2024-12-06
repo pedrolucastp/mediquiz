@@ -208,6 +208,7 @@ a:hover {
     transition: transform 0.3s ease, color 0.3s ease;
     color: white;
     font-size: 1rem;
+    font-weight: 700;
 }
 
 .collapse-toggle:hover {
@@ -235,11 +236,14 @@ a:hover {
     flex-direction: row;
     justify-content: center;
     gap: 20px;
+    display: flex;
+    width: 0;
 }
 
 .collapsible-content.expanded {
     visibility: visible; /* Shows the content */
     height: auto; /* Automatically adjusts height */
+    width: auto;
 }
 
 /* Estilo para dispositivos móveis */
