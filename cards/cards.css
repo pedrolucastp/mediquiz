@@ -17,12 +17,15 @@ main {
 #definition {
     font-size: 1.2rem;
     margin: 0;
-    flex: 1;
+    /* flex: 1; */
     display: flex;
     align-items: flex-start;
     justify-content: center;
     overflow-y: auto;
-    min-height: 150px;
+    overflow-x: hidden;
+    max-height: 115px;
+    white-space: wrap;
+    min-height: 2rem;
 }
 
 .card {
