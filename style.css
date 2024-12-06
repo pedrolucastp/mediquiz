@@ -49,7 +49,7 @@ footer {
     background-color: var(--secondary-color);
     font-size: smaller;
     color: #fff;
-    padding: 10px 0;
+    padding: 4px 0;
     text-align: center;
 } 
 
@@ -180,10 +180,6 @@ main p {
     margin: 0 auto;
 }
 
-footer p {
-    margin: 0;
-}
-
 a {
     display: inline-block;
     /* margin-top: 20px; */
@@ -198,7 +194,77 @@ a:hover {
     text-decoration: none;
 }
 
+/* Botão de colapso */
+.collapse-toggle {
+    background: none;
+    border: none;
+    color: var(--secondary-color);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    margin: 0 auto;
+    transition: transform 0.3s ease, color 0.3s ease;
+    color: white;
+    font-size: 1rem;
+}
+
+.collapse-toggle:hover {
+    color: var(--primary-color); /* Changes the color on hover/focus */
+    transform: scale(1.1); /* Slightly enlarges the arrow */
+}
+
+.collapse-toggle svg {
+    transition: transform 0.3s ease;
+    width: 30px;
+    height: 30px; /* Makes the arrow slightly bigger */
+}
+
+/* Rotate the arrow when expanded */
+.collapsible-content.expanded ~ .collapse-toggle svg {
+    transform: rotate(180deg); /* Rotates the arrow */
+}
+
+/* Conteúdo colapsável */
+.collapsible-content {
+    visibility: hidden; /* Hides the content */
+    height: 0; /* Collapses the height */
+    overflow: hidden; /* Prevents content from overflowing */
+    transition: height 0.3s ease, visibility 0.3s ease;
+    flex-direction: row;
+    justify-content: center;
+    gap: 20px;
+}
+
+.collapsible-content.expanded {
+    visibility: visible; /* Shows the content */
+    height: auto; /* Automatically adjusts height */
+}
+
+/* Estilo para dispositivos móveis */
 @media only screen and (max-width: 768px) {
+    .collapsible-content {
+        flex-direction: row;
+        gap: 10px;
+        display: flex;
+        width: 100%;
+        padding: 0 20px;
+    }
+
+    .collapse-toggle {
+        display: flex;
+    }
+
+    #difficulty-select {
+        width: 100%;
+    }
+    
+    #specialty-select {
+        width: 100%;
+    }
+
+
     header {
         flex-direction: column;
     }
@@ -241,13 +307,9 @@ a:hover {
     }
 
     .controls {
-        /* flex-direction: column; */
+        flex-direction: column;
         align-items: center;
-        gap: 10px;
-        /* margin-bottom: 10px; */
-        gap: 10px;
-        padding: 10px;
-        /* background-color: var(--select-background); */
+        gap: 0;
     }
     
     .controls-option {
@@ -255,9 +317,7 @@ a:hover {
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        /* border: 1px solid var(--accent-color); */
         width: 100%;
-        /* padding: 20px; */
         border-radius: 8px;
         gap: 10px;
     }
