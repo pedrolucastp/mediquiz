@@ -1,28 +1,28 @@
 /* caça-palavras.css */
 
-.word-list {
+#word-list {
     margin-bottom: 20px;
 }
 
-.word-list h2 {
+#word-list h2 {
     margin-bottom: 10px;
 }
 
-.word-list ul {
+#word-list ul {
     list-style-type: none;
     padding: 0;
 }
 
-.word-list li {
+#word-list li {
     font-size: 1.1rem;
     margin: 5px 0;
     text-decoration: none;
     color: #333;
 }
 
-.word-list li.found {
+#word-list li.found {
     text-decoration: line-through;
-    color: green;
+    color: var(--accent-color);
 }
 
 #game-grid {
@@ -48,7 +48,7 @@
 }
 
 #game-grid .cell.selected {
-    background-color: #d1e7dd; /* Cor para células selecionadas */
+    background-color: var(--primary-color); /* Cor para células selecionadas */
     /* border: 1px solid #0d6efd; Destaque para seleção */
 }
 
@@ -68,23 +68,33 @@
 
 @media (max-width: 768px) {
     #game-grid {
-        grid-template-columns: repeat(12, 25px);
-        grid-template-rows: repeat(24, 25px);
+        grid-template-columns: repeat(12, 27px);
+        grid-template-rows: repeat(24, 27px);
         margin: auto;
     }
 
     #game-grid .cell {
-        width: 25px;
-        height: 25px;
-        font-size: 1.2rem;
+        width: 27px;
+        height: 27px;
+        font-size: 1.4rem;
     }
 
-    .word-list h2 {
+    #word-list h2 {
         font-size: 1rem;
     }
 
-    .word-list li {
+    #word-list li {
         font-size: 0.9rem;
+        font-weight: 700;
+        display: flex;
+        flex-direction: column;
+        text-align: left;
+    }
+
+    #word-list li span {
+        font-size: 0.8rem;
+        font-weight: 300;
+
     }
 
     #status {

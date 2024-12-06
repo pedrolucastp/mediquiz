@@ -197,6 +197,10 @@ function renderWordList() {
         const li = document.createElement('li');
         li.textContent = wordObj.word.toUpperCase();
         li.id = `word-${wordObj.word}`;
+        const span = document.createElement('span');
+        span.textContent = wordObj.clue;
+        span.id = `clue-${wordObj.word}`;
+        li.appendChild(span);
         wordListElement.appendChild(li);
     });
 }
