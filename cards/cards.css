@@ -19,10 +19,10 @@ main {
     margin: 0;
     flex: 1;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
     overflow-y: auto;
-    max-height: 115px;
+    max-height: 150px;
 }
 
 .card {
