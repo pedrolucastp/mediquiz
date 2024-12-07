@@ -200,7 +200,7 @@ main  p {
 
 #home-link {
     display: flex;
-    padding: 10px 0px -20px 20px;
+    padding: 10px;
     text-decoration: none;
     color: var(--primary-color);
     font-size: 0.8rem;
@@ -304,7 +304,7 @@ main  p {
     }
     
     #home-link  {
-        padding: 10px 0 0 10px;
+        font-weight: 600;
     
     }
     .game-card p {
