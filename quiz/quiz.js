@@ -129,19 +129,27 @@ function nextQuestion() {
 }
 
 function startTimer() {
-    timeEl.textContent = timeLeft;
+    const initialTime = timeLeft * 1000; // Converte o tempo inicial para milissegundos
+    let remainingTime = initialTime;
+
     timer = setInterval(() => {
-        timeLeft--;
-        timeEl.textContent = timeLeft;
-        if (timeLeft <= 0) {
+        remainingTime -= 10; // Reduz 10ms a cada iteração
+        const seconds = Math.floor(remainingTime / 1000); // Calcula os segundos restantes
+        const centiseconds = Math.floor((remainingTime % 1000) / 10); // Calcula os centésimos restantes
+
+        // Exibir o tempo formatado como "segundos:centesimos"
+        timeEl.textContent = `${seconds}.${centiseconds.toString().padStart(2, '0')}`;
+
+        if (remainingTime <= 0) {
             clearInterval(timer);
-            selectOption(null)
+            selectOption(null);
             alert('Tempo esgotado!');
             disableOptions();
             nextButton.style.display = 'block';
         }
-    }, 1000);
+    }, 10); // Atualiza a cada 10ms
 }
+
 
 nextButton.addEventListener('click', nextQuestion);
 

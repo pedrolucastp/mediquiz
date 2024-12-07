@@ -21,11 +21,11 @@ main {
     display: flex;
     align-items: flex-start;
     justify-content: center;
-    overflow-y: auto;
-    overflow-x: hidden;
+    /* overflow-y: auto; */
+    /* overflow-x: hidden; */
     max-height: 115px;
     white-space: wrap;
-    min-height: 2rem;
+    /* min-height: 4rem; */
 }
 
 .card {

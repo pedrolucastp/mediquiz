@@ -146,7 +146,7 @@ function flipCard(event) {
                 // Verificar se todas as cartas foram combinadas
                 if (matchedCards.length === gameWords.length * 2) {
                     setTimeout(() => {
-                        alert(`Parabéns! Você encontrou todos os pares com ${score} tentativas.`);
+                        alert(`Parabéns! Você encontrou todos os pares com ${score} clicks.`);
                         // Reiniciar o jogo
                         createBoard();
                     }, 500);

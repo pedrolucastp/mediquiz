@@ -15,6 +15,12 @@
     --mobile-padding: 12px;
 }
 
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
     font-family: var(--font-family);
     background-color: var(--background-color);
@@ -37,7 +43,7 @@ header {
 }
 
 header h1 {
-    font-size: 26px;
+    font-size: 1rem;
     margin: 0;
     font-weight: 600;
     color: var(--accent-color);
@@ -127,7 +133,7 @@ select:focus {
     outline: none;
 }
 
-main p {
+main  p {
     font-size: 1.5rem;
     color: var(--secondary-color);
 }
@@ -180,18 +186,20 @@ main p {
     margin: 0 auto;
 }
 
-a {
-    display: inline-block;
-    /* margin-top: 20px; */
+#home-link {
+    display: flex;
+    margin: 10px 0px -20px 20px;
     text-decoration: none;
     color: var(--primary-color);
-    font-size: 1rem;
-    margin: 0 20px;
+    font-size: 0.8rem;
+    /* margin: 0 20px; */
 
 }
 
-a:hover {
+#home-link:hover {
     text-decoration: none;
+    color: var(--secondary-color);
+
 }
 
 /* Botão de colapso */
@@ -203,7 +211,7 @@ a:hover {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 10px;
+    /* padding: 10px; */
     margin: 0 auto;
     transition: transform 0.3s ease, color 0.3s ease;
     color: white;
@@ -274,7 +282,7 @@ a:hover {
     }
 
     header h1 {
-        font-size: 40px;    
+        font-size: 2rem;    
     }
 
     h1 {

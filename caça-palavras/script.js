@@ -60,9 +60,19 @@ function createGame() {
         return;
     }
 
-    // Selecionar 10 palavras aleatórias
-    filteredWords.sort(() => 0.5 - Math.random());
-    gameWords = filteredWords.slice(0, 10);
+    // Evitar palavras repetidas
+    const uniqueWords = Array.from(new Set(filteredWords.map(wordObj => wordObj.word.toUpperCase())));
+
+    if (uniqueWords.length < 10) {
+        alert('Não há palavras únicas suficientes para iniciar o jogo. Por favor, ajuste os filtros ou adicione mais palavras.');
+        return;
+    }
+
+    // Selecionar 10 palavras únicas aleatórias
+    uniqueWords.sort(() => 0.5 - Math.random());
+    gameWords = uniqueWords.slice(0, 10).map(word => {
+        return filteredWords.find(wordObj => wordObj.word.toUpperCase() === word);
+    });
 
     // Preencher a grade com letras aleatórias
     grid = Array(GRID_HEIGHT).fill(null).map(() => Array(GRID_WIDTH).fill(''));
@@ -82,6 +92,8 @@ function createGame() {
     renderWordList();
 }
 
+
+// Função para colocar uma palavra na grade
 // Função para colocar uma palavra na grade
 function placeWordInGrid(word) {
     const directions = ['horizontal', 'vertical'];
@@ -134,7 +146,10 @@ function placeWordInGrid(word) {
             }
 
             // Verificar se a célula está vazia ou contém a mesma letra
-            if (grid[currentRow][currentCol] !== '' && grid[currentRow][currentCol] !== word[i]) {
+            if (
+                grid[currentRow][currentCol] !== '' &&
+                grid[currentRow][currentCol] !== word[i]
+            ) {
                 canPlace = false;
                 break;
             }
@@ -162,6 +177,7 @@ function placeWordInGrid(word) {
         console.error(`Não foi possível posicionar a palavra "${word}" após ${maxAttempts} tentativas.`);
     }
 }
+
 
 // Função para preencher células vazias com letras aleatórias
 function fillEmptyCells() {
