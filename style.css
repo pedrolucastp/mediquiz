@@ -30,12 +30,12 @@ body {
     flex-direction: column;
     height: 100dvh;
     overflow: hidden;
+    width: 100dvw;
 }
 
 header {
-    background-color: var(--secondary-color);
     /* color: #fff; */
-    padding: 10px 0;
+    /* padding: 10px 0; */
     text-align: center;
     display: flex;
     align-items: center;
@@ -47,8 +47,16 @@ header h1 {
     margin: 0;
     font-weight: 600;
     color: var(--accent-color);
-    display: block;
-    /* flex: 1; */
+    display: flex;
+    /* flex: 1;  */
+}
+
+.home-header{
+    background-color: var(--secondary-color);
+    width: 100%;
+    justify-content: center;
+    line-height: 4rem;
+    
 }
 
 footer {
@@ -85,6 +93,8 @@ main {
     padding: 0 10px;
     /* width: 50%; */
     /* background-color: var(--select-background); */
+    transition: all 0.3s ease;
+
 }
 
 .controls-option {
@@ -101,7 +111,7 @@ main {
 
 label {
     font-weight: 600;
-    color: var(--select-background);
+    /* color: var(--select-background); */
     /* min-width: 100%; */
     flex-direction: column;
     display: flex;
@@ -144,6 +154,7 @@ main  p {
     justify-content: center;
     /* margin: 30px 0; */
     /* overflow: ; */
+    /* gap: 20px; */
 }
 
 .game-links a {
@@ -151,6 +162,7 @@ main  p {
     color: inherit;
     display: flex;
     margin: 0;
+    margin: 10px 0;
 
 }
 
@@ -159,7 +171,7 @@ main  p {
     border: 2px solid var(--primary-color);
     border-radius: 10px;
     width: 250px;
-    margin: 15px;
+    /* margin: 15px; */
     padding: 20px;
     transition: transform 0.2s, background-color 0.2s;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -188,7 +200,7 @@ main  p {
 
 #home-link {
     display: flex;
-    margin: 10px 0px -20px 20px;
+    padding: 10px 0px -20px 20px;
     text-decoration: none;
     color: var(--primary-color);
     font-size: 0.8rem;
@@ -214,8 +226,8 @@ main  p {
     /* padding: 10px; */
     margin: 0 auto;
     transition: transform 0.3s ease, color 0.3s ease;
-    color: white;
-    font-size: 1rem;
+    /* color: white; */
+    font-size: 0.8rem;
     font-weight: 700;
 }
 
@@ -240,7 +252,7 @@ main  p {
     visibility: hidden; /* Hides the content */
     height: 0; /* Collapses the height */
     overflow: hidden; /* Prevents content from overflowing */
-    transition: height 0.3s ease, visibility 0.3s ease;
+    transition: all 0.5s ease;
     flex-direction: row;
     justify-content: center;
     gap: 20px;
@@ -250,8 +262,10 @@ main  p {
 
 .collapsible-content.expanded {
     visibility: visible; /* Shows the content */
-    height: auto; /* Automatically adjusts height */
+    height: 80px; /* Automatically adjusts height */
     width: auto;
+    transition: all 0.5s ease;
+
 }
 
 /* Estilo para dispositivos móveis */
@@ -289,9 +303,8 @@ main  p {
         font-size: 20px;
     }
     
-    a {
-        margin-top: 10px;
-        /* font-size: 1rem; */
+    #home-link  {
+        padding: 10px 0 0 10px;
     
     }
     .game-card p {

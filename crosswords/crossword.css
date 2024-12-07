@@ -40,7 +40,7 @@
 
 #clues {
     max-width: 300px;
-    margin: 20px;
+    /* margin: 20px; */
     text-align: left;
 }
 
@@ -56,7 +56,8 @@
 
 #clue-list li {
     margin-bottom: 10px;
-    font-size: 16px;
+    font-size: 1rem;
+    text-align: left;
 }
 
 #check-button {
@@ -83,6 +84,7 @@
 
     #clues {
         text-align: center;
+        width: 100%;
     }
 
     #crossword {
