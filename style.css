@@ -49,6 +49,8 @@ header h1 {
     color: var(--accent-color);
     display: flex;
     /* flex: 1;  */
+    line-height: 4rem;
+
 }
 
 .home-header{
