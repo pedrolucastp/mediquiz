@@ -2,22 +2,36 @@
   "name": "MedQuix",
   "short_name": "MedQuix",
   "description": "Jogos educativos de medicina, incluindo memória, quiz, palavras cruzadas e mais.",
-  "start_url": "./index.html",
+  "start_url": "/mediquiz/index.html",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#2980b9",
   "icons": [
     {
-      "src": "./web-app-manifest-192x192.png",
+      "src": "/mediquiz/web-app-manifest-192x192.png",
       "sizes": "192x192",
       "type": "image/png",
-      "purpose": "maskable"
+      "purpose": "any maskable"
     },
     {
-      "src": "./web-app-manifest-512x512.png",
+      "src": "/mediquiz/web-app-manifest-512x512.png",
       "sizes": "512x512",
       "type": "image/png",
-      "purpose": "maskable"
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/mediquiz/screenshot1.png",
+      "sizes": "1080x1920",
+      "type": "image/png",
+      "label": "Tela inicial do MedQuix"
+    },
+    {
+      "src": "/mediquiz/screenshot2.png",
+      "sizes": "1080x1920",
+      "type": "image/png",
+      "label": "Lista de jogos"
     }
   ]
 }
