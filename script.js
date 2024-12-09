@@ -133,13 +133,13 @@ if (refreshCacheBtn) {
 }
 
 // Close Page
-const closePageBtn = document.getElementById('close-page-btn');
-if (closePageBtn) {
-    closePageBtn.addEventListener('click', () => {
-        if (confirm('Deseja fechar a página?')) {
-            window.open('', '_self');
-            window.close();
-        }
-    });
-}
+// const closePageBtn = document.getElementById('close-page-btn');
+// if (closePageBtn) {
+//     closePageBtn.addEventListener('click', () => {
+//         if (confirm('Deseja fechar a página?')) {
+//             window.open('', '_self');
+//             window.close();
+//         }
+//     });
+// }
 
