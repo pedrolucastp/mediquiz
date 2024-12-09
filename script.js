@@ -120,6 +120,7 @@ const refreshCacheBtn = document.getElementById('refresh-cache-btn');
 if (refreshCacheBtn) {
     refreshCacheBtn.addEventListener('click', () => {
         if (confirm('Deseja atualizar os arquivos do cache para as versões mais recentes?')) {
+            localStorage.setItem('pwaInstalled', 'false');
             caches.keys().then((cacheNames) => {
                 return Promise.all(
                     cacheNames.map((cacheName) => caches.delete(cacheName))
