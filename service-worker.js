@@ -1,36 +1,36 @@
 const CACHE_NAME = 'medquiz-cache-v1';
 const urlsToCache = [
-    '/mediquiz/',
-    '/mediquiz/index.html',
-    '/mediquiz/style.css',
-    '/mediquiz/script.js',
-    '/mediquiz/cards/index.html',
-    '/mediquiz/cards/cards.css',
-    '/mediquiz/cards/script.js',
-    '/mediquiz/caça-palavras/index.html',
-    '/mediquiz/caça-palavras/caça-palavras.css',
-    '/mediquiz/caça-palavras/script.js',
-    '/mediquiz/crosswords/index.html',
-    '/mediquiz/crosswords/crossword.css',
-    '/mediquiz/crosswords/crossword.js',
-    '/mediquiz/hangman/index.html',
-    '/mediquiz/hangman/hangman.css',
-    '/mediquiz/hangman/hangman.js',
-    '/mediquiz/quiz/index.html',
-    '/mediquiz/quiz/quiz.css',
-    '/mediquiz/quiz/quiz.js',
-    '/mediquiz/vocabulary/vocabulary.html',
-    '/mediquiz/vocabulary/vocabulary.css',
-    '/mediquiz/vocabulary/vocabulary.js',
-    '/mediquiz/vocabulary/vocabularyViewer.js',
-    '/mediquiz/components/selectorsComponent.js',
-    '/mediquiz/web-app-manifest-192x192.png',
-    '/mediquiz/web-app-manifest-512x512.png',
-    '/mediquiz/site.webmanifest',
-    '/mediquiz/apple-touch-icon.png',
-    '/mediquiz/favicon-96x96.png',
-    '/mediquiz/favicon.ico',
-    '/mediquiz/favicon.svg',
+    './',
+    './index.html',
+    './style.css',
+    './script.js',
+    './cards/index.html',
+    './cards/cards.css',
+    './cards/script.js',
+    './caça-palavras/index.html',
+    './caça-palavras/caça-palavras.css',
+    './caça-palavras/script.js',
+    './crosswords/index.html',
+    './crosswords/crossword.css',
+    './crosswords/crossword.js',
+    './hangman/index.html',
+    './hangman/hangman.css',
+    './hangman/hangman.js',
+    './quiz/index.html',
+    './quiz/quiz.css',
+    './quiz/quiz.js',
+    './vocabulary/vocabulary.html',
+    './vocabulary/vocabulary.css',
+    './vocabulary/vocabulary.js',
+    './vocabulary/vocabularyViewer.js',
+    './components/selectorsComponent.js',
+    './web-app-manifest-192x192.png',
+    './web-app-manifest-512x512.png',
+    './site.webmanifest',
+    './apple-touch-icon.png',
+    './favicon-96x96.png',
+    './favicon.ico',
+    './favicon.svg',
 ];
 
 self.addEventListener('install', (event) => {
@@ -49,7 +49,7 @@ self.addEventListener('fetch', (event) => {
                 response ||
                 fetch(event.request).catch(() => {
                     if (event.request.mode === 'navigate') {
-                        return caches.match('/mediquiz/index.html');
+                        return caches.match('./index.html');
                     }
                 })
             );

@@ -1,5 +1,3 @@
-// script.js
-
 // Verifica se o navegador suporta Service Workers
 if ('serviceWorker' in navigator) {
     navigator.serviceWorker
@@ -20,47 +18,68 @@ let deferredPrompt;
 // Lidar com o evento `beforeinstallprompt`
 window.addEventListener('beforeinstallprompt', (event) => {
     console.log('Evento beforeinstallprompt disparado');
+
     // Prevenir que o prompt padrão seja exibido
     event.preventDefault();
     deferredPrompt = event;
 
-    // Exibir o botão personalizado de instalação
-    const installButton = document.createElement('button');
-    installButton.textContent = 'Adicionar MEDiQUiZ à Tela Inicial';
-    installButton.style.padding = '10px 20px';
-    installButton.style.fontSize = '16px';
-    installButton.style.backgroundColor = '#2980b9';
-    installButton.style.color = '#fff';
-    installButton.style.border = 'none';
-    installButton.style.borderRadius = '5px';
-    installButton.style.cursor = 'pointer';
-    installButton.style.marginTop = '10px';
+    // Verificar se o PWA já foi instalado
+    const isStandalone = window.matchMedia('(display-mode: standalone)').matches;
+    const isInstalled = localStorage.getItem('pwaInstalled') === 'true';
 
-    const installContainer = document.getElementById('install-icon');
-    installContainer.appendChild(installButton);
+    if (!isStandalone && !isInstalled) {
+        console.log('PWA não instalado. Exibindo botão de instalação.');
 
-    installButton.addEventListener('click', () => {
-        console.log('Botão de instalação clicado');
-        // Remover o botão após o clique
-        installButton.remove();
+        // Criar botão personalizado de instalação
+        const installButton = document.createElement('button');
+        installButton.textContent = 'Adicionar MEDiQUiZ à Tela Inicial';
+        installButton.style.padding = '10px 20px';
+        installButton.style.fontSize = '16px';
+        installButton.style.backgroundColor = '#2980b9';
+        installButton.style.color = '#fff';
+        installButton.style.border = 'none';
+        installButton.style.borderRadius = '5px';
+        installButton.style.cursor = 'pointer';
+        installButton.style.marginTop = '10px';
 
-        // Exibir o prompt de instalação
-        if (deferredPrompt) {
-            deferredPrompt.prompt();
-
-            // Verificar a escolha do usuário
-            deferredPrompt.userChoice.then((choiceResult) => {
-                if (choiceResult.outcome === 'accepted') {
-                    console.log('Usuário aceitou instalar o PWA.');
-                } else {
-                    console.log('Usuário recusou instalar o PWA.');
-                }
-                deferredPrompt = null;
-            });
+        const installContainer = document.getElementById('install-icon');
+        if (installContainer) {
+            installContainer.appendChild(installButton);
+            console.log('Botão de instalação adicionado ao #install-icon');
         }
-    });
+
+        installButton.addEventListener('click', () => {
+            console.log('Botão de instalação clicado');
+            // Remover o botão após o clique
+            installButton.remove();
+
+            // Exibir o prompt de instalação
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+
+                // Verificar a escolha do usuário
+                deferredPrompt.userChoice.then((choiceResult) => {
+                    if (choiceResult.outcome === 'accepted') {
+                        console.log('Usuário aceitou instalar o PWA.');
+                        // Salvar no localStorage que o app foi instalado
+                        localStorage.setItem('pwaInstalled', 'true');
+                    } else {
+                        console.log('Usuário recusou instalar o PWA.');
+                    }
+                    deferredPrompt = null; // Resetar a variável após o uso
+                });
+            }
+        });
+    } else {
+        console.log('PWA já instalado ou rodando em modo standalone.');
+    }
 });
 
+// Lidar com o evento `appinstalled`
+window.addEventListener('appinstalled', () => {
+    console.log('PWA instalado');
+    localStorage.setItem('pwaInstalled', 'true');
+});
 
 // Verificar o status da conexão e exibir mensagens
 document.addEventListener('DOMContentLoaded', () => {
@@ -95,5 +114,11 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('online', updateOnlineStatus);
     window.addEventListener('offline', updateOnlineStatus);
 
-    updateOnlineStatus(); // Mostrar status inicial
+    // updateOnlineStatus(); // Mostrar status inicial
 });
+
+// Verificar se o app já está sendo executado em modo standalone
+if (window.matchMedia('(display-mode: standalone)').matches) {
+    console.log('O PWA já está rodando em modo standalone.');
+    localStorage.setItem('pwaInstalled', 'true');
+}
