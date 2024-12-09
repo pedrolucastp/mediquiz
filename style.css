@@ -210,6 +210,12 @@ main  p {
     color: var(--primary-color);
     font-size: 0.8rem;
     /* margin: 0 20px; */
+    background: var(--background-color);
+    border-radius: 4px;
+    /* margin: 4px; */
+    margin: 10px 30px;
+    width: 120px;
+    justify-content: center;
 
 }
 
@@ -271,6 +277,26 @@ main  p {
     width: auto;
     transition: all 0.5s ease;
 
+}
+
+#install-icon {
+    display: flex;
+    width: 100%;
+    padding: 10px 30px;
+}
+
+#install-icon button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #2980b9;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    /* margin-bottom: 10px; */
+    display: flex;
+    width: 100%;
+    justify-content: center;
 }
 
 /* Estilo para dispositivos móveis */

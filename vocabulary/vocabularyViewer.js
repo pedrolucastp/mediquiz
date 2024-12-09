@@ -303,6 +303,8 @@ function displayVocabulary() {
         wordElement.textContent = item.word;
 
         const clueElement = document.createElement('p');
+        clueElement.classList.add('clue');
+
         clueElement.textContent = item.clue;
 
         const specialtiesElement = document.createElement('p');
@@ -390,6 +392,15 @@ function displayVocabulary() {
             // Reverter as alterações
             toggleEditMode(termElement, item, false);
         });
+
+        // Add toggle functionality to term-item
+        termElement.addEventListener('click', () => {
+            const isVisible = iconsContainer.style.visibility === 'visible';
+            iconsContainer.style.visibility = isVisible ? 'hidden' : 'visible';
+            iconsContainer.style.height = isVisible ? '0px' : '35px';
+            iconsContainer.style.marginTop = isVisible ? '0px' : '15px';
+        });
+
 
         editContainer.appendChild(wordInput);
         editContainer.appendChild(clueInput);

@@ -32,15 +32,7 @@ window.addEventListener('beforeinstallprompt', (event) => {
 
         // Criar botão personalizado de instalação
         const installButton = document.createElement('button');
-        installButton.textContent = 'Adicionar MEDiQUiZ à Tela Inicial';
-        installButton.style.padding = '10px 20px';
-        installButton.style.fontSize = '16px';
-        installButton.style.backgroundColor = '#2980b9';
-        installButton.style.color = '#fff';
-        installButton.style.border = 'none';
-        installButton.style.borderRadius = '5px';
-        installButton.style.cursor = 'pointer';
-        installButton.style.marginTop = '10px';
+        installButton.textContent = 'Baixar MedQuix';
 
         const installContainer = document.getElementById('install-icon');
         if (installContainer) {

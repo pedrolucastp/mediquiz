@@ -60,6 +60,11 @@
     text-align: justify;
 }
 
+.clue {
+    font-size: 1.4rem;
+    line-height: 1.5rem;
+}
+
 .specialties {
     font-size: 1rem;
     text-transform: uppercase;
@@ -106,10 +111,10 @@
 }
 
 .counter p {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: bold;
     color: #2c3e50;
-    margin: 5px;
+    margin: 3px;
 }
 
 .vocabulary-list {
@@ -149,7 +154,15 @@
     background: var(--secondary-color); 
     box-shadow: inset 0 0 5px white; 
 
-  }
+}
+
+.view-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
 
 .icons-container {
     gap: 30px;
@@ -157,6 +170,10 @@
     align-items: center;
     width: 100%;
     justify-content: center;
+    margin-top: 0px;
+    transition: height 0.3s ease, visibility 0.2s ease, margin-top 0.3s ease;
+    visibility: hidden;
+    height: 0px;
 }
 
 .icons-container input {
