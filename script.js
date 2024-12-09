@@ -43,7 +43,7 @@ window.addEventListener('beforeinstallprompt', (event) => {
         installButton.addEventListener('click', () => {
             console.log('Botão de instalação clicado');
             // Remover o botão após o clique
-            installButton.remove();
+            // installButton.remove();
 
             // Exibir o prompt de instalação
             if (deferredPrompt) {
@@ -70,7 +70,7 @@ window.addEventListener('beforeinstallprompt', (event) => {
 // Lidar com o evento `appinstalled`
 window.addEventListener('appinstalled', () => {
     console.log('PWA instalado');
-    alert('PWA instalado');
+    // alert('PWA instalado');
     localStorage.setItem('pwaInstalled', 'true');
 });
 
@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // Verificar se o app já está sendo executado em modo standalone
 if (window.matchMedia('(display-mode: standalone)').matches) {
     console.log('O PWA já está rodando em modo standalone.');
-    alert('O PWA já está rodando em modo standalone.');
+    // alert('O PWA já está rodando em modo standalone.');
     localStorage.setItem('pwaInstalled', 'true');
 }
 
