@@ -104,6 +104,7 @@ footer {
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 5px 10px 10px 10px;
 } 
 
 h1 {
@@ -316,19 +317,18 @@ main  p {
 #install-icon {
     display: flex;
     width: 100%;
-    padding: 10px 30px;
+    /* padding: 10px 30px; */
 }
 
 #install-icon button {
     padding: 10px 20px;
-    font-size: 1rem;
-
+    font-size: 1.2rem;
     background-color: #2980b9;
     color: #fff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    /* margin-bottom: 10px; */
+    margin: 10px;
     display: flex;
     width: 100%;
     justify-content: center;
