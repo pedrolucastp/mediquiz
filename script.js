@@ -27,7 +27,7 @@ window.addEventListener('beforeinstallprompt', (event) => {
     const isStandalone = window.matchMedia('(display-mode: standalone)').matches;
     const isInstalled = localStorage.getItem('pwaInstalled') === 'true';
 
-    if (!isStandalone && !isInstalled) {
+    // if (!isStandalone && !isInstalled) {
         console.log('PWA não instalado. Exibindo botão de instalação.');
 
         // Criar botão personalizado de instalação
@@ -62,14 +62,15 @@ window.addEventListener('beforeinstallprompt', (event) => {
                 });
             }
         });
-    } else {
-        console.log('PWA já instalado ou rodando em modo standalone.');
-    }
+    // } else {
+        // console.log('PWA já instalado ou rodando em modo standalone.');
+    // }
 });
 
 // Lidar com o evento `appinstalled`
 window.addEventListener('appinstalled', () => {
     console.log('PWA instalado');
+    alert('PWA instalado');
     localStorage.setItem('pwaInstalled', 'true');
 });
 
@@ -112,6 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // Verificar se o app já está sendo executado em modo standalone
 if (window.matchMedia('(display-mode: standalone)').matches) {
     console.log('O PWA já está rodando em modo standalone.');
+    alert('O PWA já está rodando em modo standalone.');
     localStorage.setItem('pwaInstalled', 'true');
 }
 
