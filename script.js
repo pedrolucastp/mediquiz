@@ -32,7 +32,7 @@ window.addEventListener('beforeinstallprompt', (event) => {
 
         // Criar botão personalizado de instalação
         const installButton = document.createElement('button');
-        installButton.textContent = 'Baixar MedQuix';
+        installButton.textContent = 'Download MedQuix';
 
         const installContainer = document.getElementById('install-icon');
         if (installContainer) {
