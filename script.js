@@ -114,3 +114,31 @@ if (window.matchMedia('(display-mode: standalone)').matches) {
     console.log('O PWA já está rodando em modo standalone.');
     localStorage.setItem('pwaInstalled', 'true');
 }
+
+// Refresh Cache
+const refreshCacheBtn = document.getElementById('refresh-cache-btn');
+if (refreshCacheBtn) {
+    refreshCacheBtn.addEventListener('click', () => {
+        if (confirm('Deseja atualizar os arquivos do cache para as versões mais recentes?')) {
+            caches.keys().then((cacheNames) => {
+                return Promise.all(
+                    cacheNames.map((cacheName) => caches.delete(cacheName))
+                );
+            }).then(() => {
+                location.reload();
+            });
+        }
+    });
+}
+
+// Close Page
+const closePageBtn = document.getElementById('close-page-btn');
+if (closePageBtn) {
+    closePageBtn.addEventListener('click', () => {
+        if (confirm('Deseja fechar a página?')) {
+            window.open('', '_self');
+            window.close();
+        }
+    });
+}
+

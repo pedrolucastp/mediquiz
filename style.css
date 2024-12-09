@@ -60,6 +60,40 @@ header h1 {
     line-height: 4rem;
     
 }
+.header-icons {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    /* margin-left: 10px; */
+    justify-content: center;
+}
+
+.icon-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s;
+}
+
+.icon-btn:hover {
+    transform: scale(1.1);
+}
+
+.icon-btn svg {
+    width: 24px;
+    height: 24px;
+    transition: transform 0.2s;
+}
+
+.icon-btn:hover svg {
+    transform: scale(1.1);
+}
+
+
 
 footer {
     background-color: var(--secondary-color);
