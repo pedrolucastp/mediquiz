@@ -28,17 +28,17 @@ window.addEventListener('beforeinstallprompt', (event) => {
     const isInstalled = localStorage.getItem('pwaInstalled') === 'true';
 
     // if (!isStandalone && !isInstalled) {
-        console.log('PWA não instalado. Exibindo botão de instalação.');
+    console.log('PWA não instalado. Exibindo botão de instalação.');
 
-        // Criar botão personalizado de instalação
-        const installButton = document.createElement('button');
-        installButton.textContent = 'Download MedQuix';
+    // Criar botão personalizado de instalação
+    const installButton = document.createElement('button');
+    installButton.textContent = 'Download MedQuix';
 
-        const installContainer = document.getElementById('install-icon');
-        if (installContainer) {
-            installContainer.appendChild(installButton);
-            console.log('Botão de instalação adicionado ao #install-icon');
-        }
+    const installContainer = document.getElementById('install-icon');
+    if (installContainer) {
+        installContainer.appendChild(installButton);
+        console.log('Botão de instalação adicionado ao #install-icon');
+        // }
 
         installButton.addEventListener('click', () => {
             console.log('Botão de instalação clicado');
@@ -62,8 +62,9 @@ window.addEventListener('beforeinstallprompt', (event) => {
                 });
             }
         });
-    // } else {
-        // console.log('PWA já instalado ou rodando em modo standalone.');
+    }
+    //  else {
+    // console.log('PWA já instalado ou rodando em modo standalone.');
     // }
 });
 
