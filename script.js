@@ -118,12 +118,18 @@ if (window.matchMedia('(display-mode: standalone)').matches) {
     localStorage.setItem('pwaInstalled', 'true');
 }
 
-// Refresh Cache
+// Refresh CachevButton
 const refreshCacheBtn = document.getElementById('refresh-cache-btn');
 if (refreshCacheBtn) {
     refreshCacheBtn.addEventListener('click', () => {
-        if (confirm('Deseja atualizar para a versão mais recente?')) {
-            localStorage.setItem('pwaInstalled', 'false');
+        // if (confirm('Deseja atualizar para a versão mais recente?')) {
+            const updateConfirmation = document.createElement('span')
+            updateConfirmation.innerHTML = 'Game Updated!'
+            refreshCacheBtn.appendChild(updateConfirmation)
+            refreshCacheBtn.style.display = 'flex'
+            refreshCacheBtn.style.flexDirection = 'column'
+            refreshCacheBtn.style.padding = '30px'
+            localStorage.removeItem('pwaInstalled');
             caches.keys().then((cacheNames) => {
                 return Promise.all(
                     cacheNames.map((cacheName) => caches.delete(cacheName))
@@ -131,7 +137,7 @@ if (refreshCacheBtn) {
             }).then(() => {
                 location.reload();
             });
-        }
+        // }
     });
 }
 
