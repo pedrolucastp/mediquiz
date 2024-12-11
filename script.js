@@ -3,13 +3,15 @@ if ('serviceWorker' in navigator) {
     navigator.serviceWorker
         .register('./service-worker.js')
         .then((registration) => {
-            console.log('Service Worker registrado com sucesso:', registration.scope);
+
+            alert('Service Worker registrado com sucesso:', registration.scope);
+            // registration.unregister()
         })
         .catch((error) => {
-            console.error('Falha ao registrar o Service Worker:', error);
+            alert('Falha ao registrar o Service Worker:', error);
         });
 } else {
-    console.warn('Service Worker não é suportado neste navegador.');
+    alert('Service Worker não é suportado neste navegador.');
 }
 
 // Variável para armazenar o evento `beforeinstallprompt`
@@ -118,28 +120,98 @@ if (window.matchMedia('(display-mode: standalone)').matches) {
     localStorage.setItem('pwaInstalled', 'true');
 }
 
-// Refresh CachevButton
+// Refresh Cache - Exibir e Gerenciar as chaves do cache existentes
 const refreshCacheBtn = document.getElementById('refresh-cache-btn');
+const cacheKeysContainer = document.getElementById('cache-keys-container');
+
 if (refreshCacheBtn) {
+    console.log('Botão de atualização encontrado.');
     refreshCacheBtn.addEventListener('click', () => {
-        // if (confirm('Deseja atualizar para a versão mais recente?')) {
-            const updateConfirmation = document.createElement('span')
-            updateConfirmation.innerHTML = 'Game Updated!'
-            refreshCacheBtn.appendChild(updateConfirmation)
-            refreshCacheBtn.style.display = 'flex'
-            refreshCacheBtn.style.flexDirection = 'column'
-            refreshCacheBtn.style.padding = '30px'
-            localStorage.removeItem('pwaInstalled');
-            caches.keys().then((cacheNames) => {
-                return Promise.all(
-                    cacheNames.map((cacheName) => caches.delete(cacheName))
-                );
-            // }).then(() => {
-                // location.reload();
+        console.log('Botão de atualização clicado');
+        
+        // Limpar o container de chaves anteriores
+        cacheKeysContainer.innerHTML = '';
+
+        // Remover 'pwaInstalled' do localStorage
+        localStorage.removeItem('pwaInstalled');
+
+        // Alert para informar o usuário
+        alert('Verificando chaves do cache...');
+
+        // Obter as chaves do cache
+        caches.keys().then((cacheNames) => {
+            console.log('Caches existentes:', cacheNames);
+
+            if (cacheNames.length === 0) {
+                cacheKeysContainer.innerHTML = '<p>Nenhum cache encontrado.</p>';
+                return;
+            }
+
+            // Criar uma lista para exibir as chaves
+            const list = document.createElement('ul');
+
+            cacheNames.forEach((cacheName) => {
+                const listItem = document.createElement('li');
+                listItem.textContent = cacheName;
+                listItem.style.display = 'flex';
+                listItem.style.alignItems = 'center';
+                listItem.style.justifyContent = 'space-between';
+                listItem.style.marginBottom = '10px';
+
+                // Criar botão de exclusão
+                const deleteBtn = document.createElement('button');
+                deleteBtn.textContent = 'Excluir';
+                deleteBtn.style.padding = '5px 10px';
+                deleteBtn.style.backgroundColor = '#e74c3c';
+                deleteBtn.style.color = '#fff';
+                deleteBtn.style.border = 'none';
+                deleteBtn.style.borderRadius = '3px';
+                deleteBtn.style.cursor = 'pointer';
+
+                // Adicionar evento de clique para excluir o cache
+                deleteBtn.addEventListener('click', () => {
+                    if (confirm(`Deseja realmente excluir o cache "${cacheName}"?`)) {
+                        caches.delete(cacheName).then((success) => {
+                            if (success) {
+                                console.log(`Cache "${cacheName}" excluído com sucesso.`);
+                                // Remover o item da lista
+                                list.removeChild(listItem);
+                                alert(`Cache "${cacheName}" excluído com sucesso.`);
+                                
+                                // Verificar se ainda há caches
+                                caches.keys().then((updatedCacheNames) => {
+                                    if (updatedCacheNames.length === 0) {
+                                        cacheKeysContainer.innerHTML = '<p>Nenhum cache encontrado.</p>';
+                                    }
+                                });
+                            } else {
+                                console.error(`Falha ao excluir o cache "${cacheName}".`);
+                                alert(`Falha ao excluir o cache "${cacheName}".`);
+                            }
+                        }).catch((error) => {
+                            console.error(`Erro ao excluir o cache "${cacheName}":`, error);
+                            alert(`Erro ao excluir o cache "${cacheName}": ${error}`);
+                        });
+                    }
+                });
+
+                listItem.appendChild(document.createTextNode(cacheName));
+                listItem.appendChild(deleteBtn);
+                list.appendChild(listItem);
             });
-        // }
+
+            cacheKeysContainer.appendChild(list);
+        }).catch((error) => {
+            console.error('Erro ao obter as chaves do cache:', error);
+            cacheKeysContainer.innerHTML = `<p>Erro ao obter as chaves do cache: ${error}</p>`;
+        });
     });
+} else {
+    console.warn('Botão de atualização não encontrado no HTML.');
 }
+
+
+
 
 // Close Page
 // const closePageBtn = document.getElementById('close-page-btn');
