@@ -134,8 +134,8 @@ if (refreshCacheBtn) {
                 return Promise.all(
                     cacheNames.map((cacheName) => caches.delete(cacheName))
                 );
-            }).then(() => {
-                location.reload();
+            // }).then(() => {
+                // location.reload();
             });
         // }
     });
