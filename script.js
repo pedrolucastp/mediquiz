@@ -121,7 +121,7 @@ if (window.matchMedia('(display-mode: standalone)').matches) {
 const refreshCacheBtn = document.getElementById('refresh-cache-btn');
 if (refreshCacheBtn) {
     refreshCacheBtn.addEventListener('click', () => {
-        if (confirm('Deseja atualizar os arquivos do cache para as versões mais recentes?')) {
+        if (confirm('Deseja atualizar para a versão mais recente?')) {
             localStorage.setItem('pwaInstalled', 'false');
             caches.keys().then((cacheNames) => {
                 return Promise.all(
